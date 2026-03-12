@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dossier de compétences – Ton Nom</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: sans-serif; background: #f4f4f4; }
+    header {
+      background: #1a1a2e;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header h1 { font-size: 1.2rem; font-weight: 400; }
+    .download-btn {
+      background: #e94560;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .pdf-container {
+      width: 100%;
+      height: calc(100vh - 64px);
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dossier de compétences — Ton Nom</h1>
+    <a class="download-btn" href="assets/resume/mon-dossier.pdf" download>
+      ⬇ Télécharger
+    </a>
+  </header>
+  <div class="pdf-container">
+    <iframe src="assets/resume/mon-dossier.pdf"></iframe>
+  </div>
+</body>
+</html>
