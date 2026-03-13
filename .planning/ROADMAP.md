@@ -28,7 +28,7 @@ Quatre phases livrent un chatbot RAG fonctionnel et public : d'abord sécuriser 
 **Plans**: 1 plan
 
 Plans:
-- [ ] 01-01-PLAN.md — Créer .gitignore, config.py, et requirements.txt (SETUP-01, SETUP-02, SETUP-03)
+- [x] 01-01-PLAN.md — Créer .gitignore, config.py, et requirements.txt (SETUP-01, SETUP-02, SETUP-03)
 
 ### Phase 2: Build de l'index FAISS
 **Goal**: L'index vectoriel est construit depuis le PDF source, validé qualitativement, et commité dans le repo — prêt à être chargé par l'app Streamlit
@@ -38,7 +38,10 @@ Plans:
   1. `python build_index.py` s'exécute sans erreur et crée le dossier `faiss_index/`
   2. Le script affiche le nombre de chunks générés et un aperçu des premiers chunks — l'utilisateur peut vérifier que le texte est lisible et bien découpé
   3. `faiss_index/` peut être commité dans Git et est présent dans le repo après commit
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 02-01-PLAN.md — Créer build_index.py et valider + commiter faiss_index/ (INDEX-01, INDEX-02, INDEX-03, INDEX-04)
 
 ### Phase 3: Application Streamlit complète
 **Goal**: L'application tourne en local — un utilisateur peut poser une question, obtenir une réponse contextualisée en français depuis le document, suivre une conversation multi-tour, et voir les questions suggérées au démarrage
@@ -68,6 +71,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Setup & Configuration | 1/1 | Complete    | 2026-03-13 |
-| 2. Build de l'index FAISS | 0/TBD | Not started | - |
+| 2. Build de l'index FAISS | 0/1 | Not started | - |
 | 3. Application Streamlit complète | 0/TBD | Not started | - |
 | 4. Déploiement | 0/TBD | Not started | - |
