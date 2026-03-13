@@ -25,7 +25,10 @@ Quatre phases livrent un chatbot RAG fonctionnel et public : d'abord sécuriser 
   1. `.gitignore` exclut `.streamlit/secrets.toml` — un `git status` après création du fichier de secrets ne montre pas ce fichier comme "untracked"
   2. `config.py` existe et contient les constantes partagées (modèle embedding, chunk size, chunk overlap, k) importables depuis tout script
   3. `requirements.txt` liste toutes les dépendances avec versions fixées et est installable via `pip install -r requirements.txt` sans erreur
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 01-01-PLAN.md — Créer .gitignore, config.py, et requirements.txt (SETUP-01, SETUP-02, SETUP-03)
 
 ### Phase 2: Build de l'index FAISS
 **Goal**: L'index vectoriel est construit depuis le PDF source, validé qualitativement, et commité dans le repo — prêt à être chargé par l'app Streamlit
@@ -64,7 +67,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Setup & Configuration | 0/TBD | Not started | - |
+| 1. Setup & Configuration | 0/1 | Ready to execute | - |
 | 2. Build de l'index FAISS | 0/TBD | Not started | - |
 | 3. Application Streamlit complète | 0/TBD | Not started | - |
 | 4. Déploiement | 0/TBD | Not started | - |
