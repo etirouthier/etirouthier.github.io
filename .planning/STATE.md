@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 01-setup-configuration-01-01-PLAN.md
-last_updated: "2026-03-13T08:09:45.090Z"
+stopped_at: Completed 02-build-de-l-index-faiss-02-01-PLAN.md
+last_updated: "2026-03-13T16:39:28.317Z"
 last_activity: 2026-03-13 — Roadmap created
 progress:
   total_phases: 4
-  completed_phases: 1
-  total_plans: 1
-  completed_plans: 1
+  completed_phases: 2
+  total_plans: 2
+  completed_plans: 2
   percent: 100
 ---
 
@@ -51,6 +51,7 @@ Progress: [██████████] 100%
 
 *Updated after each plan completion*
 | Phase 01-setup-configuration P01 | 3min | 3 tasks | 3 files |
+| Phase 02-build-de-l-index-faiss P01 | 10min | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,8 @@ Recent decisions affecting current work:
 - [Phase 01-01]: faiss_index/ absent de .gitignore intentionnellement — doit être commité pour Streamlit Community Cloud (filesystem éphémère)
 - [Phase 01-01]: pip freeze complet (189 packages) — reproductibilité garantie sur Streamlit Community Cloud
 - [Phase 01-01]: CHUNK_SIZE=500, CHUNK_OVERLAP=50 — calibrés pour document court et dense, ajustables en Phase 2
+- [Phase 02-build-de-l-index-faiss]: build_index.py imports EMBEDDING_MODEL from config.py — value 'mistral-embed' never duplicated, ensuring build/query consistency
+- [Phase 02-build-de-l-index-faiss]: faiss_index/ committed in Git (not gitignored) — required for Streamlit Community Cloud ephemeral filesystem
 
 ### Pending Todos
 
@@ -78,6 +81,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T08:05:52.406Z
-Stopped at: Completed 01-setup-configuration-01-01-PLAN.md
+Last session: 2026-03-13T16:39:28.315Z
+Stopped at: Completed 02-build-de-l-index-faiss-02-01-PLAN.md
 Resume file: None

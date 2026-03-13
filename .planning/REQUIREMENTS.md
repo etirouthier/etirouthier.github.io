@@ -15,10 +15,10 @@
 
 ### Build de l'index
 
-- [ ] **INDEX-01**: Le script `build_index.py` ingère tous les fichiers présents dans `assets/` (PDF et autres formats supportés) en une seule passe
-- [ ] **INDEX-02**: Le script `build_index.py` génère un index FAISS local dans `faiss_index/` à partir des embeddings Mistral (`mistral-embed`)
-- [ ] **INDEX-03**: L'index FAISS (`faiss_index/`) peut être commité dans le repo Git pour être disponible sur Streamlit Community Cloud
-- [ ] **INDEX-04**: Le script affiche des logs de validation (nombre de chunks générés, aperçu des premiers chunks) pour permettre à l'utilisateur de vérifier la qualité de l'extraction avant de commiter l'index
+- [x] **INDEX-01**: Le script `build_index.py` ingère tous les fichiers présents dans `assets/` (PDF et autres formats supportés) en une seule passe
+- [x] **INDEX-02**: Le script `build_index.py` génère un index FAISS local dans `faiss_index/` à partir des embeddings Mistral (`mistral-embed`)
+- [x] **INDEX-03**: L'index FAISS (`faiss_index/`) peut être commité dans le repo Git pour être disponible sur Streamlit Community Cloud
+- [x] **INDEX-04**: Le script affiche des logs de validation (nombre de chunks générés, aperçu des premiers chunks) pour permettre à l'utilisateur de vérifier la qualité de l'extraction avant de commiter l'index
 
 ### Pipeline RAG
 
@@ -88,10 +88,10 @@
 | SETUP-01 | Phase 1 | Complete |
 | SETUP-02 | Phase 1 | Complete |
 | SETUP-03 | Phase 1 | Complete |
-| INDEX-01 | Phase 2 | Pending |
-| INDEX-02 | Phase 2 | Pending |
-| INDEX-03 | Phase 2 | Pending |
-| INDEX-04 | Phase 2 | Pending |
+| INDEX-01 | Phase 2 | Complete |
+| INDEX-02 | Phase 2 | Complete |
+| INDEX-03 | Phase 2 | Complete |
+| INDEX-04 | Phase 2 | Complete |
 | RAG-01 | Phase 3 | Pending |
 | RAG-02 | Phase 3 | Pending |
 | RAG-03 | Phase 3 | Pending |
