@@ -65,7 +65,10 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. L'URL Streamlit Community Cloud répond sans login et affiche l'interface de chat
   2. La clé API Mistral n'apparaît pas dans le code source ni dans l'historique Git — elle est configurée exclusivement via les secrets du dashboard Streamlit
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 04-01-PLAN.md — Créer requirements-app.txt minimal + déployer sur Streamlit Community Cloud (DEPLOY-01, DEPLOY-02)
 
 ## Progress
 
@@ -77,4 +80,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Setup & Configuration | 1/1 | Complete    | 2026-03-13 |
 | 2. Build de l'index FAISS | 1/1 | Complete   | 2026-03-13 |
 | 3. Application Streamlit complète | 2/2 | Complete   | 2026-03-13 |
-| 4. Déploiement | 0/TBD | Not started | - |
+| 4. Déploiement | 0/1 | Not started | - |
