@@ -22,10 +22,10 @@
 
 ### Pipeline RAG
 
-- [ ] **RAG-01**: L'app charge l'index FAISS au démarrage et l'expose via `@st.cache_resource` (chargement unique, pas de rechargement à chaque re-run)
-- [ ] **RAG-02**: À chaque question, l'app récupère les chunks les plus pertinents via similarity search FAISS (k configurable via `config.py`)
-- [ ] **RAG-03**: L'app appelle le modèle Mistral (`mistral-small-latest`) avec les chunks récupérés comme contexte et l'historique de la session
-- [ ] **RAG-04**: Tous les appels à l'API Mistral sont protégés par un `try/except` qui affiche un message d'erreur en français en cas de rate limit (HTTP 429) ou d'erreur réseau
+- [x] **RAG-01**: L'app charge l'index FAISS au démarrage et l'expose via `@st.cache_resource` (chargement unique, pas de rechargement à chaque re-run)
+- [x] **RAG-02**: À chaque question, l'app récupère les chunks les plus pertinents via similarity search FAISS (k configurable via `config.py`)
+- [x] **RAG-03**: L'app appelle le modèle Mistral (`mistral-small-latest`) avec les chunks récupérés comme contexte et l'historique de la session
+- [x] **RAG-04**: Tous les appels à l'API Mistral sont protégés par un `try/except` qui affiche un message d'erreur en français en cas de rate limit (HTTP 429) ou d'erreur réseau
 
 ### Interface Streamlit
 
@@ -37,10 +37,10 @@
 
 ### System Prompt & Comportement
 
-- [ ] **PROMPT-01**: Le chatbot répond exclusivement en français, quelle que soit la langue de la question
-- [ ] **PROMPT-02**: Le chatbot adopte un ton professionnel cohérent avec le profil présenté dans les documents
-- [ ] **PROMPT-03**: Quand une question dépasse le contenu des documents, le chatbot répond explicitement qu'il ne dispose pas de cette information (pas d'hallucination)
-- [ ] **PROMPT-04**: L'historique de la conversation est passé au LLM pour permettre les questions de suivi multi-tour ("dis-m'en plus", "et pour ce projet ?")
+- [x] **PROMPT-01**: Le chatbot répond exclusivement en français, quelle que soit la langue de la question
+- [x] **PROMPT-02**: Le chatbot adopte un ton professionnel cohérent avec le profil présenté dans les documents
+- [x] **PROMPT-03**: Quand une question dépasse le contenu des documents, le chatbot répond explicitement qu'il ne dispose pas de cette information (pas d'hallucination)
+- [x] **PROMPT-04**: L'historique de la conversation est passé au LLM pour permettre les questions de suivi multi-tour ("dis-m'en plus", "et pour ce projet ?")
 
 ### Déploiement
 
@@ -92,19 +92,19 @@
 | INDEX-02 | Phase 2 | Complete |
 | INDEX-03 | Phase 2 | Complete |
 | INDEX-04 | Phase 2 | Complete |
-| RAG-01 | Phase 3 | Pending |
-| RAG-02 | Phase 3 | Pending |
-| RAG-03 | Phase 3 | Pending |
-| RAG-04 | Phase 3 | Pending |
+| RAG-01 | Phase 3 | Complete |
+| RAG-02 | Phase 3 | Complete |
+| RAG-03 | Phase 3 | Complete |
+| RAG-04 | Phase 3 | Complete |
 | UI-01 | Phase 3 | Pending |
 | UI-02 | Phase 3 | Pending |
 | UI-03 | Phase 3 | Pending |
 | UI-04 | Phase 3 | Pending |
 | UI-05 | Phase 3 | Pending |
-| PROMPT-01 | Phase 3 | Pending |
-| PROMPT-02 | Phase 3 | Pending |
-| PROMPT-03 | Phase 3 | Pending |
-| PROMPT-04 | Phase 3 | Pending |
+| PROMPT-01 | Phase 3 | Complete |
+| PROMPT-02 | Phase 3 | Complete |
+| PROMPT-03 | Phase 3 | Complete |
+| PROMPT-04 | Phase 3 | Complete |
 | DEPLOY-01 | Phase 4 | Pending |
 | DEPLOY-02 | Phase 4 | Pending |
 

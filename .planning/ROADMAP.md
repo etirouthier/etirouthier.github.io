@@ -76,5 +76,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Setup & Configuration | 1/1 | Complete    | 2026-03-13 |
 | 2. Build de l'index FAISS | 1/1 | Complete   | 2026-03-13 |
-| 3. Application Streamlit complète | 0/2 | Not started | - |
+| 3. Application Streamlit complète | 1/2 | In Progress|  |
 | 4. Déploiement | 0/TBD | Not started | - |
