@@ -41,7 +41,7 @@ Plans:
 **Plans**: 1 plan
 
 Plans:
-- [ ] 02-01-PLAN.md — Créer build_index.py et valider + commiter faiss_index/ (INDEX-01, INDEX-02, INDEX-03, INDEX-04)
+- [x] 02-01-PLAN.md — Créer build_index.py et valider + commiter faiss_index/ (INDEX-01, INDEX-02, INDEX-03, INDEX-04)
 
 ### Phase 3: Application Streamlit complète
 **Goal**: L'application tourne en local — un utilisateur peut poser une question, obtenir une réponse contextualisée en français depuis le document, suivre une conversation multi-tour, et voir les questions suggérées au démarrage
@@ -52,7 +52,11 @@ Plans:
   2. Cliquer sur un bouton ou saisir une question déclenche une réponse en français basée sur le contenu du PDF (pas d'hallucination hors-scope — le chatbot dit explicitement qu'il ne dispose pas de l'information)
   3. L'historique de la conversation reste visible pendant toute la session et les questions de suivi ("dis-m'en plus") obtiennent des réponses cohérentes avec le contexte précédent
   4. En cas de rate limit Mistral (HTTP 429), un message d'erreur en français s'affiche — l'app ne plante pas silencieusement
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 03-01-PLAN.md — Infrastructure de tests Wave 0 : conftest.py, test_rag.py, test_prompt.py (RAG-01, RAG-02, RAG-03, RAG-04, PROMPT-01, PROMPT-02, PROMPT-03, PROMPT-04)
+- [ ] 03-02-PLAN.md — Implémenter app.py complet + checkpoint validation manuelle (RAG-01..04, UI-01..05, PROMPT-01..04)
 
 ### Phase 4: Déploiement
 **Goal**: L'app est publiquement accessible sur Streamlit Community Cloud sans authentification — n'importe qui avec le lien peut l'utiliser
@@ -72,5 +76,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Setup & Configuration | 1/1 | Complete    | 2026-03-13 |
 | 2. Build de l'index FAISS | 1/1 | Complete   | 2026-03-13 |
-| 3. Application Streamlit complète | 0/TBD | Not started | - |
+| 3. Application Streamlit complète | 0/2 | Not started | - |
 | 4. Déploiement | 0/TBD | Not started | - |
