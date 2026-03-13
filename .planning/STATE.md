@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 03-application-streamlit-complete-03-01-PLAN.md
-last_updated: "2026-03-13T17:22:51.885Z"
+stopped_at: "Completed 03-02-PLAN.md — awaiting checkpoint:human-verify Task 2"
+last_updated: "2026-03-13T18:06:03.243Z"
 last_activity: 2026-03-13 — Roadmap created
 progress:
   total_phases: 4
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 4
-  completed_plans: 3
+  completed_plans: 4
   percent: 100
 ---
 
@@ -53,6 +53,7 @@ Progress: [██████████] 100%
 | Phase 01-setup-configuration P01 | 3min | 3 tasks | 3 files |
 | Phase 02-build-de-l-index-faiss P01 | 10min | 2 tasks | 3 files |
 | Phase 03-application-streamlit-complete P01 | 5min | 2 tasks | 4 files |
+| Phase 03-application-streamlit-complete P02 | 8min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - [Phase 02-build-de-l-index-faiss]: build_index.py imports EMBEDDING_MODEL from config.py — value 'mistral-embed' never duplicated, ensuring build/query consistency
 - [Phase 02-build-de-l-index-faiss]: faiss_index/ committed in Git (not gitignored) — required for Streamlit Community Cloud ephemeral filesystem
 - [Phase 03-application-streamlit-complete]: test_prompt04 importorskip removed — pure logic test must pass green per success criteria, app.py not needed
+- [Phase 03-application-streamlit-complete]: allow_dangerous_deserialization=True required for FAISS.load_local pickle deserialization
+- [Phase 03-application-streamlit-complete]: Error message for 429 displayed inside assistant chat bubble, not via st.error outside
 
 ### Pending Todos
 
@@ -83,6 +86,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T17:22:51.883Z
-Stopped at: Completed 03-application-streamlit-complete-03-01-PLAN.md
+Last session: 2026-03-13T18:06:03.240Z
+Stopped at: Completed 03-02-PLAN.md — awaiting checkpoint:human-verify Task 2
 Resume file: None
