@@ -55,8 +55,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 03-01-PLAN.md — Infrastructure de tests Wave 0 : conftest.py, test_rag.py, test_prompt.py (RAG-01, RAG-02, RAG-03, RAG-04, PROMPT-01, PROMPT-02, PROMPT-03, PROMPT-04)
-- [ ] 03-02-PLAN.md — Implémenter app.py complet + checkpoint validation manuelle (RAG-01..04, UI-01..05, PROMPT-01..04)
+- [x] 03-01-PLAN.md — Infrastructure de tests Wave 0 : conftest.py, test_rag.py, test_prompt.py (RAG-01, RAG-02, RAG-03, RAG-04, PROMPT-01, PROMPT-02, PROMPT-03, PROMPT-04)
+- [x] 03-02-PLAN.md — Implémenter app.py complet + checkpoint validation manuelle (RAG-01..04, UI-01..05, PROMPT-01..04)
 
 ### Phase 4: Déploiement
 **Goal**: L'app est publiquement accessible sur Streamlit Community Cloud sans authentification — n'importe qui avec le lien peut l'utiliser

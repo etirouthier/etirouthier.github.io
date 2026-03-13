@@ -26,10 +26,12 @@ decisions:
   - Suggested buttons only shown when len(messages)==0 per UI-03 spec
   - active_question resolved before pending_question cleared to avoid re-render issues
   - Error message for 429 displayed inside assistant chat bubble (not st.error outside)
+requirements-completed: [RAG-01, RAG-02, RAG-03, RAG-04, UI-01, UI-02, UI-03, UI-04, UI-05, PROMPT-01, PROMPT-02, PROMPT-03, PROMPT-04]
+
 metrics:
   duration: ~8min
   completed_date: "2026-03-13"
-  tasks_completed: 1/2 (Task 2 is checkpoint:human-verify — awaiting user)
+  tasks_completed: 2/2
   files_created: 1
   files_modified: 0
 ---
@@ -68,7 +70,7 @@ tests/test_rag.py::test_rag04_rate_limit_returns_french_error SKIPPED (manual sm
 | Task | Name | Commit | Files |
 |------|------|--------|-------|
 | 1 | Implémenter app.py — pipeline RAG complet | b4a6224 | app.py (created, 102 lines) |
-| 2 | Vérification manuelle | PENDING | checkpoint:human-verify |
+| 2 | Vérification manuelle | approved | checkpoint:human-verify — user approved |
 
 ## Deviations from Plan
 
