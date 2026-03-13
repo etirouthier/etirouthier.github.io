@@ -9,9 +9,9 @@
 
 ### Setup & Configuration
 
-- [ ] **SETUP-01**: Le repo contient un `.gitignore` qui exclut `.streamlit/secrets.toml` et tout fichier de clé API
-- [ ] **SETUP-02**: Un fichier `config.py` centralise les constantes partagées entre `build_index.py` et `app.py` (nom du modèle d'embedding, chunk size, chunk overlap, nombre de chunks récupérés)
-- [ ] **SETUP-03**: Un fichier `requirements.txt` liste toutes les dépendances avec versions fixées (compatible Streamlit Community Cloud)
+- [x] **SETUP-01**: Le repo contient un `.gitignore` qui exclut `.streamlit/secrets.toml` et tout fichier de clé API
+- [x] **SETUP-02**: Un fichier `config.py` centralise les constantes partagées entre `build_index.py` et `app.py` (nom du modèle d'embedding, chunk size, chunk overlap, nombre de chunks récupérés)
+- [x] **SETUP-03**: Un fichier `requirements.txt` liste toutes les dépendances avec versions fixées (compatible Streamlit Community Cloud)
 
 ### Build de l'index
 
@@ -85,9 +85,9 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SETUP-01 | Phase 1 | Pending |
-| SETUP-02 | Phase 1 | Pending |
-| SETUP-03 | Phase 1 | Pending |
+| SETUP-01 | Phase 1 | Complete |
+| SETUP-02 | Phase 1 | Complete |
+| SETUP-03 | Phase 1 | Complete |
 | INDEX-01 | Phase 2 | Pending |
 | INDEX-02 | Phase 2 | Pending |
 | INDEX-03 | Phase 2 | Pending |

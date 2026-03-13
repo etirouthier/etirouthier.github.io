@@ -1,3 +1,19 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: planning
+stopped_at: Completed 01-setup-configuration-01-01-PLAN.md
+last_updated: "2026-03-13T08:05:52.408Z"
+last_activity: 2026-03-13 — Roadmap created
+progress:
+  total_phases: 4
+  completed_phases: 1
+  total_plans: 1
+  completed_plans: 1
+  percent: 100
+---
+
 # Project State
 
 ## Project Reference
@@ -14,7 +30,7 @@ Plan: 0 of TBD in current phase
 Status: Ready to plan
 Last activity: 2026-03-13 — Roadmap created
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -34,6 +50,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 01-setup-configuration P01 | 3min | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -45,6 +62,10 @@ Recent decisions affecting current work:
 - [Roadmap]: FAISS local commité dans le repo Git (contrainte Streamlit Community Cloud — filesystem éphémère)
 - [Roadmap]: `.streamlit/secrets.toml` dans `.gitignore` dès la Phase 1 — pitfall CRITIQUE à adresser avant tout code
 - [Roadmap]: `config.py` centralise les constantes partagées entre `build_index.py` et `app.py` — en particulier le modèle d'embedding (incohérence = index inutilisable)
+- [Phase 01-01]: EMBEDDING_MODEL=mistral-embed dans config.py — doit être identique entre build_index.py et app.py (divergence = résultats FAISS silencieusement invalides)
+- [Phase 01-01]: faiss_index/ absent de .gitignore intentionnellement — doit être commité pour Streamlit Community Cloud (filesystem éphémère)
+- [Phase 01-01]: pip freeze complet (189 packages) — reproductibilité garantie sur Streamlit Community Cloud
+- [Phase 01-01]: CHUNK_SIZE=500, CHUNK_OVERLAP=50 — calibrés pour document court et dense, ajustables en Phase 2
 
 ### Pending Todos
 
@@ -57,6 +78,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13
-Stopped at: Roadmap créée, prêt à planifier la Phase 1
+Last session: 2026-03-13T08:05:52.406Z
+Stopped at: Completed 01-setup-configuration-01-01-PLAN.md
 Resume file: None

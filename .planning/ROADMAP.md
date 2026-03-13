@@ -10,7 +10,7 @@ Quatre phases livrent un chatbot RAG fonctionnel et public : d'abord sécuriser 
 - Integer phases (1, 2, 3): Planned milestone work
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
-- [ ] **Phase 1: Setup & Configuration** - Repo sécurisé, dépendances fixées, constantes partagées en place
+- [x] **Phase 1: Setup & Configuration** - Repo sécurisé, dépendances fixées, constantes partagées en place (completed 2026-03-13)
 - [ ] **Phase 2: Build de l'index FAISS** - Script d'indexation validé, index commité dans le repo
 - [ ] **Phase 3: Application Streamlit complète** - Pipeline RAG + UI + system prompt fonctionnels en local
 - [ ] **Phase 4: Déploiement** - App publique accessible sur Streamlit Community Cloud
@@ -67,7 +67,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Setup & Configuration | 0/1 | Ready to execute | - |
+| 1. Setup & Configuration | 1/1 | Complete   | 2026-03-13 |
 | 2. Build de l'index FAISS | 0/TBD | Not started | - |
 | 3. Application Streamlit complète | 0/TBD | Not started | - |
 | 4. Déploiement | 0/TBD | Not started | - |
