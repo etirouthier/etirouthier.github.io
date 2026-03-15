@@ -22,7 +22,7 @@ Full archive: `.planning/milestones/v1.0-ROADMAP.md`
 ### v1.1 Polish & First Impression
 
 - [x] **Phase 5: Suggestions & Style** - Chips recruteur (4 questions), style pill, et page config (completed 2026-03-15)
-- [ ] **Phase 6: Identité Visuelle** - Message d'accueil et header professionnel
+- [x] **Phase 6: Identité Visuelle** - Message d'accueil et header professionnel (completed 2026-03-15)
 
 ## Phase Details
 
@@ -63,4 +63,4 @@ Plans:
 | 3. Application Streamlit complète | v1.0 | 2/2 | Complete | 2026-03-13 |
 | 4. Déploiement | v1.0 | 1/1 | Complete | 2026-03-15 |
 | 5. Suggestions & Style | v1.1 | 1/1 | Complete | 2026-03-15 |
-| 6. Identité Visuelle | v1.1 | 0/1 | Not started | - |
+| 6. Identité Visuelle | 1/1 | Complete   | 2026-03-15 | - |

@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Polish & First Impression
 status: Roadmap défini, prêt pour plan-phase 5
-stopped_at: Completed 05-01-PLAN.md — 4 recruiter chips + pill style deployed
-last_updated: "2026-03-15T17:21:55.906Z"
+stopped_at: "Checkpoint: human-verify after 06-01 tasks complete — visual verification needed"
+last_updated: "2026-03-15T17:32:24.462Z"
 last_activity: 2026-03-15 — Roadmap v1.1 créé
 progress:
   total_phases: 2
-  completed_phases: 1
-  total_plans: 1
-  completed_plans: 1
+  completed_phases: 2
+  total_plans: 2
+  completed_plans: 2
   percent: 0
 ---
 
@@ -52,6 +52,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 05-suggestions-style P01 | 2min | 3 tasks | 2 files |
+| Phase 06-identite-visuelle P01 | 1 | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -70,6 +71,8 @@ Recent decisions affecting current work:
 - [Phase 05-suggestions-style]: st.set_page_config placed before @st.cache_resource decorator — Streamlit ordering constraint
 - [Phase 05-suggestions-style]: SUGGESTIONS constant + args=(question,) variable reference — single source of truth, no string duplication
 - [Phase 05-suggestions-style]: buttonRadius = 'full' in config.toml only — colors deferred to Phase 6
+- [Phase 06-identite-visuelle]: BRAND-01: HEADER_HTML constant uses var(--text-color) + opacity: 0.65 — never hex hardcoded for dark mode compatibility
+- [Phase 06-identite-visuelle]: ACCU-01: st.chat_message("assistant") welcome bubble as first statement in messages == 0 guard — no extra session_state variable
 
 ### Pending Todos
 
@@ -82,6 +85,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-15T17:16:39.365Z
-Stopped at: Completed 05-01-PLAN.md — 4 recruiter chips + pill style deployed
+Last session: 2026-03-15T17:32:24.460Z
+Stopped at: Checkpoint: human-verify after 06-01 tasks complete — visual verification needed
 Resume file: None
