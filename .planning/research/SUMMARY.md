@@ -1,17 +1,17 @@
 # Project Research Summary
 
-**Project:** RAG Chatbot CV — Portfolio Professionnel
-**Domain:** RAG chatbot portfolio/CV (showcase professionnel B2B)
-**Researched:** 2026-03-13
-**Confidence:** MEDIUM-HIGH
+**Project:** Chatbot CV — v1.1 UX Polish (Branding, Welcome Message, Suggestion Chips)
+**Domain:** Streamlit single-page chatbot — professional portfolio for freelance consultant
+**Researched:** 2026-03-15
+**Confidence:** HIGH
 
 ## Executive Summary
 
-Ce projet est un chatbot RAG (Retrieval-Augmented Generation) déployé comme portfolio professionnel interactif. L'approche standard pour ce type d'application repose sur trois composants clairs : un vectorstore local (FAISS) construit offline depuis un PDF, un LLM hébergé (Mistral) pour la génération de réponses, et une interface conversationnelle Streamlit déployée sur Streamlit Community Cloud. La recherche confirme que ce stack est bien documenté, libre de coût, et adapté à l'échelle d'un seul document PDF.
+This is a polish milestone on a working v1.0 production app. The RAG chatbot (Streamlit 1.55.0, LangChain, FAISS-cpu, Mistral API) is fully validated and deployed at https://etirouthierappio.streamlit.app/. The three features in scope — a professional branding header, a contextual welcome message, and recruiter-targeted suggestion chips — are all low-complexity, low-risk UI additions that require zero new dependencies. Every technique uses Streamlit capabilities already present in production and thoroughly documented.
 
-L'approche recommandée est de séparer strictement deux chemins d'exécution : le build de l'index (offline, manuel, lancé une fois après chaque mise à jour du PDF) et la query runtime (Streamlit app). L'index FAISS doit être commité dans le repo Git — contrainte non négociable imposée par le filesystem éphémère de Streamlit Community Cloud. Le MVP est estimé à 8-12h de travail focalisé, avec une priorité claire : core RAG fonctionnel avant tout polish UI.
+The recommended approach is to implement the three features in a strictly ordered sequence that minimizes the blast radius of each change: page config first (isolated, zero-risk), recruiter suggestion text second (string-only replacement, lowest risk), welcome message third (new block inside existing guard), and the HTML branding header last (the only change that involves custom CSS and carries moderate regression risk). This ordering is dictated by both Streamlit's hard API constraints (`st.set_page_config` must be the first `st.*` call in the script) and the principle of validating simpler changes before more complex ones.
 
-Le risque principal n'est pas technique mais opérationnel : plusieurs pitfalls critiques surviennent au moment du setup (clé API exposée, index absent) plutôt que pendant le développement. Ces décisions doivent être prises avant d'écrire la première ligne de code. Le free tier Mistral impose une gestion explicite des erreurs 429 — sans quoi l'app plante silencieusement en démo.
+The primary risk for this milestone is not feature complexity but implementation hygiene: misplacing `st.set_page_config` crashes the app immediately; using unstable internal Streamlit CSS class names causes silent regressions on future deploys; and placing the welcome message outside the existing session-state guard causes it to reappear above every chat turn. All three risks have clear, documented prevention strategies. No architectural decisions are required — the single-file structure is correct at this scale (~130 lines post-v1.1).
 
 ---
 
@@ -19,123 +19,117 @@ Le risque principal n'est pas technique mais opérationnel : plusieurs pitfalls 
 
 ### Recommended Stack
 
-Le stack est homogène autour de l'écosystème LangChain >=0.2 et Mistral. LangChain Expression Language (LCEL) remplace l'ancienne `RetrievalQA` — ne pas utiliser les patterns legacy. Le SDK `mistralai` >=1.0.0 a subi une réécriture majeure mi-2024 ; utiliser cette version ou `langchain-mistralai` pour l'intégration LangChain. `PyPDF2` est déprécié — utiliser `pypdf` >=4.0.0.
+The stack is frozen at Streamlit 1.55.0 with no new packages required. All three features are implemented through existing Streamlit APIs: `st.set_page_config()` for browser tab metadata, `st.markdown(unsafe_allow_html=True)` for the HTML/CSS header (not `st.html`, which strips `<style>` tags via DOMPurify), `st.chat_message` for the welcome bubble (reusing the existing chat pattern), and `st.button` in `st.columns` for suggestion chips (updating labels only, no structural change).
+
+Theme customization via `.streamlit/config.toml` is available and uses stable, versioned keys (`primaryColor`, `baseRadius`, `buttonRadius`) verified against the 1.44–1.55 release notes. The `[theme]` section is the recommended path for global styling (pill-shaped buttons, brand color) rather than per-element CSS overrides, since it propagates automatically to all Streamlit UI elements.
 
 **Core technologies:**
-- `streamlit` >=1.35.0 : framework UI et hébergement — natif Streamlit Community Cloud, chat UI intégré
-- `mistralai` >=1.0.0 + `langchain-mistralai` >=0.1.0 : LLM et embeddings — SDK officiel, free tier disponible
-- `faiss-cpu` >=1.8.0 : vectorstore local — zéro coût, adapté à un seul PDF, pas besoin de service externe
-- `pypdf` >=4.0.0 : parsing PDF — actif et maintenu (remplace PyPDF2 déprécié)
-- `langchain` >=0.2.0 + `langchain-core` + `langchain-community` : orchestration RAG via LCEL
-- Python 3.11 : version stable, compatibilité garantie avec tout le stack
+- `streamlit==1.55.0`: All three features use APIs available since Streamlit 1.17.0 or earlier — no upgrade needed
+- `st.markdown(unsafe_allow_html=True)`: The correct injection path for `<style>` blocks and custom HTML; `st.html` is explicitly wrong for CSS injection (DOMPurify strips style tags)
+- `.streamlit/config.toml [theme]`: Stable, version-resilient global styling via `primaryColor`, `baseRadius`, `buttonRadius`, `font`
 
 ### Expected Features
 
-**Must have (table stakes) :**
-- Réponses basées sur le contenu du PDF — promesse core du produit
-- Réponses en français — audience B2B, enforced via system prompt
-- Interface conversationnelle (`st.chat_input`) — UI de base attendue
-- Historique de conversation visible (`st.session_state`) — l'utilisateur doit voir l'échange
-- Questions de démarrage suggérées — réduit l'angoisse de la page blanche
-- Fallback gracieux hors-scope — ne pas halluciner, system prompt géré
+Research into the French freelance IT recruiter market confirms that all three features are table-stakes expectations for a candidate portfolio in 2026. Missing them makes the app feel unfinished or anonymous.
 
-**Should have (différenciateurs) :**
-- Suivi multi-tour (historique passé au LLM) — "dis-m'en plus" sans reformuler
-- Ton persona-consistent — les réponses sonnent comme le professionnel, pas comme un AI générique
-- Réponse rapide < 3s — minimiser les chunks passés au modèle
-- "Je ne sais pas" honnête — plus de confiance qu'un AI qui invente
+**Must have (table stakes for v1.1):**
+- Professional header (name + freelance positioning) — recruiters expect immediate identity; a generic app title does not establish who the candidate is
+- Contextual welcome message — removes "what is this?" ambiguity for cold visitors; must not restate the title but explain the chatbot's scope and limitations
+- 4 recruiter-targeted suggestion chips — replaces 2 generic v1.0 buttons; must address the 4 mental questions recruiters ask in the first 60 seconds: technical skills, past project types, mission fit, and availability/TJM
 
-**Defer (v2+) :**
-- Streaming token — complexité supplémentaire, Mistral free tier moins fiable en streaming
-- Historique multi-tour passé au LLM — commencer sans, ajouter après le core fonctionnel
-- Fallback rebuild FAISS au démarrage — complexité infra inutile pour un PDF stable
+**Should have (differentiators):**
+- Pill-shaped buttons via `buttonRadius = "full"` in config.toml — signals professional design intent
+- Welcome message that acknowledges chatbot limitations honestly — builds more trust than overclaiming
 
-**Anti-features explicites (ne jamais construire) :**
-- Affichage des sources/extraits — décision explicite, ajoute du bruit pour l'audience B2B
-- Authentification — tue la conversion
-- Multi-langue — double la complexité du prompt
-- Historique persistant cross-sessions — requiert BDD, problèmes de privacy
+**Defer to v1.2+:**
+- Contact links (email, LinkedIn) in header — requires a public disclosure decision on what to expose
+- Dynamic post-response suggestions — requires LLM prompt engineering, out of scope
+- Streamlit footer/branding suppression — not reliably achievable on Community Cloud; CSS hacks break on every Streamlit version update
 
 ### Architecture Approach
 
-L'architecture repose sur deux chemins d'exécution indépendants : `build_index.py` (offline, lance manuellement) construit l'index FAISS depuis le PDF et le commit dans le repo ; `app.py` (runtime Streamlit) charge cet index via `@st.cache_resource` et orchestre la chaîne RAG à chaque message. Une `config.py` centralise les constantes partagées — en particulier le nom du modèle d'embedding qui doit être identique entre les deux scripts. La séparation offline/runtime est la décision architecturale la plus importante du projet.
+All v1.1 changes are contained within `app.py` (~130 lines post-change) and the optional `.streamlit/config.toml` file. No file splits, no new modules, no new imports. The execution flow is linear and fully mapped: `set_page_config` inserts before the first `st.*` render call; the HTML header replaces the existing `st.title()`; the welcome message inserts as the first statement inside the already-existing `if len(st.session_state.messages) == 0:` block; and the suggestion buttons are updated by changing string literals only.
 
-**Major components:**
-1. `build_index.py` — ingestion PDF, chunking, embedding, génération de `faiss_index/` (commité dans le repo)
-2. `config.py` — constantes partagées (modèle, chunk size) — importé par tous les scripts
-3. `app.py` — UI Streamlit + pipeline RAG complet (load index, query, call Mistral, afficher réponse)
-4. `faiss_index/` — vectorstore local commité dans le repo Git (contrainte Streamlit Community Cloud)
-5. `.streamlit/secrets.toml` — clé API locale uniquement, dans `.gitignore`
+**Major components and their v1.1 changes:**
+1. `st.set_page_config()` — NEW: browser tab title and favicon; hard constraint: must precede all other `st.*` calls, including `@st.cache_resource` decorated functions
+2. Header block — REPLACE: `st.title()` with `st.markdown(HEADER_HTML, unsafe_allow_html=True)` in an isolated call (not mixed with other markdown content)
+3. Empty-state block — EXTEND: insert `st.chat_message("assistant")` welcome bubble as the first statement; update button string literals and `args` tuples for the 4 new recruiter chips
 
 ### Critical Pitfalls
 
-1. **Index FAISS absent sur Streamlit Community Cloud** — commiter `faiss_index/` dans le repo, vérifier que ce dossier n'est PAS dans `.gitignore`. Décider avant tout développement.
-2. **Clé API Mistral exposée dans le repo** — ajouter `.streamlit/secrets.toml` dans `.gitignore` dès l'init du repo, utiliser exclusivement `st.secrets["MISTRAL_API_KEY"]`.
-3. **Modèle d'embedding différent entre build et query** — définir `EMBEDDING_MODEL = "mistral-embed"` dans `config.py` et importer depuis les deux scripts. Toute modification requiert un rebuild complet de l'index.
-4. **Rate limits Mistral free tier non gérés** — wrapper tous les appels Mistral dans `try/except` avec message utilisateur FR affiché via `st.warning()`.
-5. **FAISS rechargé à chaque re-run Streamlit** — utiliser `@st.cache_resource` sur la fonction de chargement de l'index, sans exception.
+1. **`st.set_page_config` called after any `st.*` call** — raises `StreamlitAPIException` and crashes the app on load. Place it as the absolute first `st.*` call after imports and before `load_vectorstore()`. The `@st.cache_resource` decorator registers with Streamlit's runtime and counts as a `st.*` call.
+
+2. **CSS targeting unstable internal class names (`.css-*`, `.st-emotion-cache-*`)** — silently breaks after any Streamlit version bump on Community Cloud. Use only stable selectors or build self-contained HTML/CSS blocks via `st.markdown`. Never write CSS based on browser DevTools inspection of Streamlit internals.
+
+3. **Welcome message rendered outside the `messages == 0` guard** — reappears above every chat turn on every Streamlit rerun because Streamlit re-executes the full script on every interaction. Must be inside `if len(st.session_state.messages) == 0:`, the same block already used for suggestion buttons.
+
+4. **HTML header mixed into same `st.markdown` call as other markdown content** — since Streamlit 1.46.0, inline code blocks render incorrectly inside any `st.markdown` with `unsafe_allow_html=True`. Keep the HTML header in its own isolated `st.markdown` call; never combine with regular markdown text.
+
+5. **Suggestion button `args` not updated to match new labels** — clicking a button injects the `args` tuple value, not the visible label string. When updating suggestion text, both `label` and `args=(question_string,)` must be updated together. Explicit `key=` parameters on each button prevent Streamlit deduplication bugs.
 
 ---
 
 ## Implications for Roadmap
 
-Based on research, suggested phase structure:
+The three features naturally form a single implementation phase with a well-defined internal build order. Dependencies and risk levels dictate the sequence.
 
-### Phase 1: Setup et Configuration
-**Rationale:** Toutes les décisions critiques de sécurité et d'infrastructure doivent précéder tout développement. Les pitfalls les plus graves (clé API exposée, index absent) surviennent avant la première ligne de code applicatif.
-**Delivers:** Repo configuré, `.gitignore` correct, structure de fichiers en place, clé API sécurisée, `config.py` avec constantes partagées.
-**Addresses:** Sécurité clé API (Pitfall 2), cohérence du modèle d'embedding (Pitfall 5).
-**Avoids:** Les deux pitfalls CRITIQUE du projet.
+### Phase 1: Page Config and Browser Identity
 
-### Phase 2: Build de l'index FAISS
-**Rationale:** L'index doit être validé avant d'écrire l'UI — tester en isolation évite de déboguer le pipeline entier. La qualité de l'extraction PDF et le calibrage des chunks déterminent la qualité de toutes les réponses ultérieures.
-**Delivers:** `build_index.py` fonctionnel, `faiss_index/` commité dans le repo, extraction PDF validée, chunks calibrés.
-**Uses:** `pypdf`, `langchain-text-splitters` (chunk_size=400-600, overlap=50-100), `MistralAIEmbeddings`, `faiss-cpu`.
-**Avoids:** Pitfall extraction PDF (Pitfall 9), taille de chunks mal calibrée (Pitfall 4), modèle embedding incohérent (Pitfall 5).
+**Rationale:** `st.set_page_config()` has a hard Streamlit constraint that makes it the safest first change — it is entirely isolated, validates the deployment pipeline, and its failure mode is loud (immediate crash) rather than silent. It cannot be deferred once other `st.*` calls exist.
 
-### Phase 3: Core RAG (sans UI)
-**Rationale:** Valider le pipeline complet en CLI avant d'ajouter la couche Streamlit. Un core fonctionnel en isolation simplifie drastiquement le débogage.
-**Delivers:** Fonction de query testable en ligne de commande — charge l'index, récupère k=3-5 chunks, appelle Mistral, retourne une réponse.
-**Uses:** `langchain` LCEL, `ChatMistralAI` (mistral-small-latest), `FAISS.load_local()`.
-**Implements:** Pipeline RAG complet (Path 2 de ARCHITECTURE.md).
-**Avoids:** Gestion 429 Mistral (Pitfall 3), `allow_dangerous_deserialization` (Pitfall 7).
+**Delivers:** Custom browser tab title ("Etienne Routhier — Dossier de Compétences") and favicon; confirms the app still loads cleanly on Streamlit Community Cloud after the first code change.
 
-### Phase 4: Interface Streamlit + System Prompt
-**Rationale:** L'UI se construit sur un core validé. Le system prompt (langue, persona, fallback) est groupé ici car il conditionne la qualité perçue de l'app entière — ratio valeur/effort excellent.
-**Delivers:** `app.py` avec chat UI complet, `st.session_state` pour l'historique, system prompt FR + persona + fallback hors-scope, `@st.cache_resource` sur le chargement FAISS.
-**Addresses:** Toutes les features "Table Stakes" de FEATURES.md.
-**Avoids:** FAISS rechargé à chaque re-run (Pitfall 6), conversation perdue sans session_state.
+**Addresses:** Table-stakes identity feature; the recruiter's first impression is the browser tab, not the page.
 
-### Phase 5: Polish et Questions Suggérées
-**Rationale:** Les différenciateurs et le polish UX s'ajoutent après que le core fonctionne. Les questions suggérées requièrent un chat de base opérationnel pour s'y connecter.
-**Delivers:** Questions suggérées au démarrage (st.button + st.columns, uniquement si len(messages)==0), suivi multi-tour (historique passé au LLM), spinner cold start.
-**Addresses:** Features "Différenciateurs" de FEATURES.md.
-**Avoids:** Cold start UX non anticipé (Pitfall 10).
+**Avoids:** Pitfall 1 (`set_page_config` ordering crash).
 
-### Phase 6: Déploiement Streamlit Community Cloud
-**Rationale:** Déployer en dernier, une fois que l'app est stable en local. Vérifier que l'index est commité et que les secrets sont configurés dans le dashboard avant le premier deploy.
-**Delivers:** App publique accessible sans login, secrets configurés dans le dashboard Streamlit.
-**Avoids:** Index absent sur le cloud (Pitfall 1), cold start non documenté (Pitfall 10).
+### Phase 2: Recruiter Suggestion Chips
+
+**Rationale:** The lowest-risk content change — only string literals are modified inside a structure that already works in production. Validating the core recruiter value (guided question flow) independently before any new UI structures are added reduces debugging surface area.
+
+**Delivers:** 4 recruiter-targeted question chips replacing the 2 generic v1.0 buttons: technical skills, past project types, mission fit, and availability. Directly addresses the 4 mental questions French freelance IT recruiters ask in the first 60 seconds.
+
+**Addresses:** Must-have table-stakes feature with the highest conversion value for recruiter experience.
+
+**Avoids:** Pitfall 5 (suggestion button state corruption) by explicitly updating both `label` and `args` and adding `key=` parameters to each button.
+
+### Phase 3: Welcome Message
+
+**Rationale:** Logically paired with suggestion chips (both live in the `messages == 0` guard). Adding it after Phase 2 confirms the empty-state block is working correctly before a new element is inserted into it. Depends on Phase 1 (app loads cleanly).
+
+**Delivers:** An `st.chat_message("assistant")` welcome bubble visible on first load, explaining the chatbot's purpose and scope. Disappears after the first question is sent, consistent with suggestion chips behavior.
+
+**Addresses:** Must-have table-stakes feature; removes "what is this?" ambiguity for cold visitors.
+
+**Avoids:** Pitfall 3 (welcome message redisplay on every rerun) by placing it inside the existing `if len(st.session_state.messages) == 0:` guard.
+
+### Phase 4: Branding Header
+
+**Rationale:** The most complex of the four changes — custom HTML/CSS, replaces `st.title()`. Placed last because: (a) it is the only change with a moderate regression risk (dark/light theme color mismatch, HTML rendering quirks), (b) all other features are confirmed working before touching the primary visual element, and (c) it depends on Phase 1 being in place.
+
+**Delivers:** A centered header with name ("Etienne Routhier") and subtitle ("Consultant Freelance — Data & IA"), replacing the generic app title. Establishes professional identity at first glance.
+
+**Addresses:** Must-have table-stakes feature with the highest visual impact for recruiter first impression.
+
+**Avoids:** Pitfall 2 (unstable CSS class names) via self-contained inline styles on semantic HTML elements only. Avoids Pitfall 4 by isolating the `st.markdown(HEADER_HTML, unsafe_allow_html=True)` call from any other markdown content.
 
 ### Phase Ordering Rationale
 
-- **Setup avant tout** : deux pitfalls CRITIQUE surviennent au niveau Git/config, pas dans le code. Impossible de les corriger après coup sans risque.
-- **Index avant l'app** : la qualité des chunks détermine la qualité des réponses — valider en isolation avant d'intégrer avec Streamlit.
-- **Core RAG en CLI d'abord** : séparer les problèmes — un bug dans le pipeline ne doit pas être masqué par des bugs UI.
-- **System prompt groupé avec l'UI** : la langue et le persona sont des paramètres de prompt, pas d'architecture — leur intégration est immédiate.
-- **Polish en dernier** : les questions suggérées et le multi-tour sont des améliorations sur un core stable.
+- **Constraint-driven ordering:** `st.set_page_config` must be first — this is a hard Streamlit API rule, not a preference. It cannot be moved after the fact without restructuring the file.
+- **Risk-ascending ordering:** String changes before new UI blocks before custom HTML. Each phase validates the app is still deployable before the next phase introduces more complexity.
+- **Dependency-aware ordering:** The welcome message and suggestion chips share the `messages == 0` guard — confirming the guard still works after Phase 2 before adding a second element into it in Phase 3.
+- **Pitfall-mapped ordering:** The sequence directly matches the pitfall-to-phase mapping in PITFALLS.md, ensuring each critical pitfall is addressed at the earliest phase that introduces the relevant code.
 
 ### Research Flags
 
-Phases avec patterns bien documentés (skip research-phase) :
-- **Phase 1 (Setup)** : décisions standard de sécurité Git, documentation officielle Streamlit.
-- **Phase 2 (Build index)** : pipeline LangChain PDF→FAISS documenté officiellement, validation manuelle suffisante.
-- **Phase 3 (Core RAG)** : LCEL bien documenté, patterns stables.
-- **Phase 4 (UI Streamlit)** : `st.chat_message`, `st.session_state` — documentation officielle Streamlit complète.
+Phases with standard, well-documented patterns (research-phase not needed):
 
-Phases pouvant nécessiter un research-phase pendant le planning :
-- **Phase 5 (Multi-tour)** : le passage de l'historique au prompt Mistral peut nécessiter des ajustements selon le format attendu par `ChatMistralAI` (HumanMessage/AIMessage vs dicts).
-- **Phase 6 (Déploiement)** : si le cold start devient problématique, des solutions de "keep-alive" peuvent nécessiter recherche.
+- **All 4 phases:** Every technique is verified against official Streamlit 1.55.0 docs with HIGH confidence. No novel integrations, no third-party APIs, no authentication, no data persistence. The implementation is deterministic and requires no exploratory research.
+
+Areas requiring implementation-time verification (not research, just testing):
+
+- **Phase 4 (Branding Header):** Test the header in both Streamlit light and dark themes on the live URL. The `color: #666` subtitle color may need adjustment for dark mode. Verify on the deployed app at https://etirouthierappio.streamlit.app/ — CSS can behave differently on first visit due to browser caching of the old version.
+- **All phases:** Verify on the live Streamlit Community Cloud URL after each deploy, not just locally.
 
 ---
 
@@ -143,38 +137,39 @@ Phases pouvant nécessiter un research-phase pendant le planning :
 
 | Area | Confidence | Notes |
 |------|------------|-------|
-| Stack | HIGH | Basé sur documentation officielle LangChain, Streamlit et Mistral (août 2025). Versions précises, rationale claire. |
-| Features | MEDIUM | Basé sur des patterns communs de chatbots portfolio — pas de benchmark direct. Priorités logiques mais non validées par retour utilisateur. |
-| Architecture | HIGH | Patterns FAISS+LangChain+Streamlit bien documentés, deux chemins d'exécution clairement séparés. Contraintes Streamlit Community Cloud vérifiées. |
-| Pitfalls | MEDIUM-HIGH | Patterns stables et récurrents dans ce stack. La plupart sont documentés officiellement ou issus de problèmes LangChain connus. |
+| Stack | HIGH | Verified against Streamlit 1.55.0 official docs and 2025–2026 release notes; all APIs confirmed present in the production version; no new packages |
+| Features | HIGH | App inspected directly from source; recruiter psychology grounded in French freelance IT market (Free-Work) and UX chatbot research from multiple sources |
+| Architecture | HIGH | Execution flow mapped against the actual 102-line `app.py`; all integration points and ordering constraints verified in official Streamlit docs |
+| Pitfalls | HIGH | Each pitfall backed by official docs, confirmed GitHub issues, or community forum threads with reproducible symptoms and known recovery steps |
 
-**Overall confidence:** MEDIUM-HIGH
+**Overall confidence:** HIGH
 
 ### Gaps to Address
 
-- **Qualité du PDF source** : si `dossier_competence.pdf` contient des tableaux complexes ou du texte multi-colonne, `pypdf` peut produire une extraction dégradée. Valider impérativement lors du build de l'index (Phase 2) avant de continuer.
-- **Chunk size optimal** : 400-600 chars est une recommandation générale pour des documents courts et denses. La valeur exacte doit être calibrée empiriquement sur le PDF réel lors du build.
-- **Format historique multi-tour Mistral** : le passage de l'historique de conversation au format `ChatMistralAI` (LangChain) n'a pas été testé en pratique — valider lors de la Phase 5.
-- **Quota Mistral free tier** : les limites exactes (requêtes/minute, tokens/jour) sont sujettes à changement — surveiller lors des tests de charge.
+- **Dark mode header color:** The `color: #666` hardcoded hex in the subtitle HTML may be invisible or low-contrast in Streamlit dark mode. This is a known gap — validate visually after Phase 4 implementation and use CSS variables (`var(--text-color)`) if needed. Not a blocker, but must be verified before marking Phase 4 done.
+- **Exact welcome message copy:** Research defines what the message must cover (chatbot purpose, what can be asked, limitations) and what it must not do (restate the page title). Final French copy is an implementation decision, not a research decision.
+- **4-chip layout choice:** 4 buttons can be laid out as `st.columns(4)` (single row) or two rows of `st.columns(2)`. The current app uses `st.columns(2)`. Choice depends on label length. Validate on a 1080p viewport and on mobile before finalizing.
 
 ---
 
 ## Sources
 
 ### Primary (HIGH confidence)
-- Documentation officielle LangChain (langchain.com) — LCEL, FAISS wrapper, text splitters, MistralAI integration
-- Documentation officielle Streamlit (docs.streamlit.io) — `st.chat_message`, `st.session_state`, `@st.cache_resource`, secrets management, Community Cloud constraints
-- Documentation officielle Mistral AI (docs.mistral.ai) — modèles disponibles, SDK v1.0, mistral-embed
+- Streamlit official docs — `st.set_page_config`, theming, `st.chat_message`, `st.markdown`, `st.html`, session state, button behavior
+- Streamlit 2025–2026 release notes — feature availability verified per version (1.44, 1.46, 1.47, 1.55)
+- Direct inspection of `/workspaces/etienne.routhier/app.py` — ground truth on current structure, execution order, and session state shape
+- Free-Work — French freelance IT TJM and recruiter psychology (2026 market data)
 
 ### Secondary (MEDIUM confidence)
-- Patterns communautaires LangChain — chunk size recommandations pour documents courts
-- Retours d'expérience Streamlit Community Cloud — comportement filesystem éphémère, cold start
+- Streamlit community forum — custom header branding patterns, CSS class name instability behavior
+- FlowHunt / Landbot / Knak Digital — chatbot welcome message UX best practices
+- Streamlit community forum — portfolio chatbot UX patterns and recruiter conversion signals
 
-### Tertiary (LOW confidence)
-- Estimation MVP 8-12h — basée sur la complexité des composants, non validée empiriquement
-- Chunk size 400-600 chars — recommandation générale, doit être validée sur le PDF réel
+### Tertiary (awareness only)
+- GitHub `streamlit/streamlit#11888` — `unsafe_allow_html` inline code rendering bug since 1.46
+- GitHub `streamlit/streamlit#6456` — `prefers-color-scheme` CSS misalignment with Streamlit theme toggle
+- GitHub `streamlit/streamlit#4595` — button `on_click` callback timing behavior
 
 ---
-
-*Research completed: 2026-03-13*
+*Research completed: 2026-03-15*
 *Ready for roadmap: yes*
