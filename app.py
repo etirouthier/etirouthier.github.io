@@ -8,6 +8,12 @@ from config import EMBEDDING_MODEL, LLM_MODEL, K_RETRIEVED, FAISS_INDEX_PATH
 # Charger .env si présent (dev local) — no-op en production Streamlit Cloud
 load_dotenv()
 
+st.set_page_config(
+    page_title="Etienne Routhier — Dossier de Compétences",
+    page_icon="💼",
+    layout="centered",
+)
+
 SYSTEM_PROMPT = (
     "Tu es un assistant professionnel qui répond aux questions sur le profil "
     "et les compétences d'Etienne Routhier, basé uniquement sur les documents fournis.\n"
@@ -45,21 +51,24 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
+SUGGESTIONS = [
+    "Quelle est votre stack technique principale ?",
+    "Quels types de missions avez-vous réalisés ?",
+    "Etes-vous disponible et quel est votre TJM ?",
+    "Seriez-vous un bon fit pour ma mission ?",
+]
+
 # Boutons suggérés — affichés uniquement avant le premier message
 if len(st.session_state.messages) == 0:
-    col1, col2 = st.columns(2)
-    with col1:
-        st.button(
-            "Quelles sont vos principales compétences ?",
-            on_click=inject_question,
-            args=("Quelles sont vos principales compétences ?",),
-        )
-    with col2:
-        st.button(
-            "En quoi pouvez-vous m'aider sur mon projet ?",
-            on_click=inject_question,
-            args=("En quoi pouvez-vous m'aider sur mon projet ?",),
-        )
+    cols = st.columns(4)
+    for i, (col, question) in enumerate(zip(cols, SUGGESTIONS)):
+        with col:
+            st.button(
+                question,
+                key=f"suggestion_{i}",
+                on_click=inject_question,
+                args=(question,),
+            )
 
 # Résolution de la question active
 user_input = st.chat_input("Posez votre question sur le profil...")
