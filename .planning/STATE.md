@@ -1,11 +1,11 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
+milestone: v1.1
+milestone_name: Polish & First Impression
 status: planning
-stopped_at: "Completed 04-01-PLAN.md — Phase 4 complete, app deployed at https://etirouthierappio.streamlit.app/"
-last_updated: "2026-03-15T15:54:00.652Z"
-last_activity: 2026-03-13 — Roadmap created
+stopped_at: "Milestone v1.1 started — defining requirements"
+last_updated: "2026-03-15"
+last_activity: 2026-03-15 — Milestone v1.1 started
 progress:
   total_phases: 4
   completed_phases: 4
@@ -25,12 +25,12 @@ See: .planning/PROJECT.md (updated 2026-03-15)
 
 ## Current Position
 
-Milestone v1.0 complete — shipped 2026-03-15
-App live: https://etirouthierappio.streamlit.app/
-Status: Between milestones
-Last activity: 2026-03-15 — v1.0 milestone archived
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-03-15 — Milestone v1.1 started
 
-Progress: [██████████] 100%
+Progress: [░░░░░░░░░░] 0%
 
 ## Performance Metrics
 
