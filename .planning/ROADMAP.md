@@ -35,7 +35,10 @@ Full archive: `.planning/milestones/v1.0-ROADMAP.md`
   2. Cliquer sur un bouton de suggestion déclenche le pipeline RAG avec la question correspondante
   3. Les boutons s'affichent avec un style pill (bords arrondis) via config.toml
   4. L'app se charge sans erreur (st.set_page_config en première position dans app.py)
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 05-01-PLAN.md — Modifier app.py (set_page_config + 4 chips) et créer .streamlit/config.toml (pill buttons)
 
 ### Phase 6: Identité Visuelle
 **Goal**: Un visiteur comprend immédiatement qui est Étienne et ce que le chatbot peut faire pour lui
@@ -56,5 +59,5 @@ Full archive: `.planning/milestones/v1.0-ROADMAP.md`
 | 2. Build de l'index FAISS | v1.0 | 1/1 | Complete | 2026-03-13 |
 | 3. Application Streamlit complète | v1.0 | 2/2 | Complete | 2026-03-13 |
 | 4. Déploiement | v1.0 | 1/1 | Complete | 2026-03-15 |
-| 5. Suggestions & Style | v1.1 | 0/? | Not started | - |
+| 5. Suggestions & Style | v1.1 | 0/1 | Not started | - |
 | 6. Identité Visuelle | v1.1 | 0/? | Not started | - |
