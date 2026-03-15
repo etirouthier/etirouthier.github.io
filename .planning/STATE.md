@@ -4,7 +4,7 @@ milestone: v1.0
 milestone_name: milestone
 status: planning
 stopped_at: "Completed 04-01-PLAN.md — Phase 4 complete, app deployed at https://etirouthierappio.streamlit.app/"
-last_updated: "2026-03-15T15:51:21.835Z"
+last_updated: "2026-03-15T15:54:00.652Z"
 last_activity: 2026-03-13 — Roadmap created
 progress:
   total_phases: 4
@@ -18,17 +18,17 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-03-13)
+See: .planning/PROJECT.md (updated 2026-03-15)
 
 **Core value:** Un client potentiel peut poser n'importe quelle question sur le profil professionnel et obtenir une réponse précise et contextuelle directement depuis le document — sans avoir à lire le PDF en entier.
-**Current focus:** Phase 1 — Setup & Configuration
+**Current focus:** Planning next milestone — run `/gsd:new-milestone` to start v1.1
 
 ## Current Position
 
-Phase: 1 of 4 (Setup & Configuration)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-03-13 — Roadmap created
+Milestone v1.0 complete — shipped 2026-03-15
+App live: https://etirouthierappio.streamlit.app/
+Status: Between milestones
+Last activity: 2026-03-15 — v1.0 milestone archived
 
 Progress: [██████████] 100%
 

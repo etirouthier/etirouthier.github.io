@@ -12,17 +12,17 @@ Un client potentiel peut poser n'importe quelle question sur le profil professio
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Le chatbot répond aux questions en s'appuyant sur le contenu de dossier_competence.pdf — v1.0
+- ✓ L'interface propose des questions prédéfinies au démarrage — v1.0
+- ✓ Toutes les réponses sont en français — v1.0
+- ✓ L'app est publique (pas d'authentification) — v1.0
+- ✓ La base vectorielle FAISS est buildée via un script Python manuel — v1.0
+- ✓ L'app est déployée et fonctionnelle sur Streamlit Community Cloud — v1.0
+- ✓ L'API Mistral (free tier) est utilisée pour la génération de réponses — v1.0
 
 ### Active
 
-- [ ] Le chatbot répond aux questions en s'appuyant sur le contenu de dossier_competence.pdf
-- [ ] L'interface propose des questions prédéfinies au démarrage ("Quelles sont vos principales compétences ?", "En quoi pouvez-vous m'aider sur mon projet ?")
-- [ ] Toutes les réponses sont en français
-- [ ] L'app est publique (pas d'authentification)
-- [ ] La base vectorielle FAISS est buildée via un script Python manuel (à relancer après mise à jour du PDF)
-- [ ] L'app est déployée et fonctionnelle sur Streamlit Community Cloud
-- [ ] L'API Mistral (free tier) est utilisée pour la génération de réponses
+(Définir avec `/gsd:new-milestone` pour v1.1)
 
 ### Out of Scope
 
@@ -33,27 +33,34 @@ Un client potentiel peut poser n'importe quelle question sur le profil professio
 
 ## Context
 
-- Le document source est `assets/dossier_competence.pdf` (CV + portfolio)
-- La base FAISS est locale et versionnée avec le projet (ou ignorée selon la taille)
-- Le script de build de l'index (`build_index.py` ou similaire) est lancé manuellement après chaque mise à jour du PDF
-- Hébergement cible : Streamlit Community Cloud (gratuit), avec la clé API Mistral stockée dans les secrets Streamlit
-- Le projet existant contient déjà du HTML pour un dossier de compétences — le chatbot vient en complément ou en remplacement
+**v1.0 shipped 2026-03-15** — 284 lignes Python, 4 phases, 5 plans, 38 commits.
+
+Tech stack : Streamlit 1.55 · LangChain · FAISS-cpu · Mistral API (mistral-embed + mistral-small)
+
+App live : https://etirouthierappio.streamlit.app/
+
+- `build_index.py` — script offline à relancer manuellement après mise à jour du PDF
+- `faiss_index/` — index commité dans git (filesystem éphémère sur Streamlit Cloud)
+- `requirements-app.txt` — dépendances minimales pour le déploiement (7 packages)
+- `requirements.txt` — environnement de dev complet (189 packages)
 
 ## Constraints
 
 - **API**: Mistral free tier — limites de rate et de tokens à respecter
-- **Hébergement**: Streamlit Community Cloud — pas de persistance de fichiers, FAISS doit être inclus dans le repo ou regénéré au démarrage
-- **Stack**: Python / Streamlit / LangChain ou équivalent / FAISS / Mistral API
+- **Hébergement**: Streamlit Community Cloud — pas de persistance de fichiers, FAISS doit être inclus dans le repo
+- **Stack**: Python / Streamlit / LangChain / FAISS / Mistral API
 - **Budget**: Gratuit (free tier uniquement)
 
 ## Key Decisions
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| FAISS local (pas de vectorstore cloud) | Simplicité, pas de coût, rebuild manuel suffisant | — Pending |
-| Mistral free tier | Pas de coût d'API | — Pending |
-| Streamlit Community Cloud | Déploiement gratuit, intégration native Streamlit | — Pending |
-| Rebuild index manuel | Contrôle explicite sur quand l'index est mis à jour | — Pending |
+| FAISS local (pas de vectorstore cloud) | Simplicité, pas de coût, rebuild manuel suffisant | ✓ Validé — fonctionne bien pour document stable |
+| Mistral free tier | Pas de coût d'API | ✓ Validé — rate limits gérés via message d'erreur dans le chat |
+| Streamlit Community Cloud | Déploiement gratuit, intégration native Streamlit | ✓ Validé — app publique déployée en < 1h |
+| Rebuild index manuel | Contrôle explicite sur quand l'index est mis à jour | ✓ Validé — faiss_index/ commité dans git |
+| EMBEDDING_MODEL centralisé dans config.py | Divergence silencieuse = résultats FAISS invalides | ✓ Critique — même valeur utilisée dans build et app |
+| requirements-app.txt séparé | Streamlit Cloud n'a pas besoin des 189 packages dev | ✓ Bon pattern — 7 packages suffisants en prod |
 
 ---
-*Last updated: 2026-03-13 after initialization*
+*Last updated: 2026-03-15 after v1.0 milestone*
