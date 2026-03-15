@@ -56,12 +56,12 @@
 ### Branding
 
 - [ ] **BRAND-01**: L'utilisateur voit un header avec le nom et le titre freelance d'Étienne en haut de page
-- [ ] **BRAND-02**: Les boutons de suggestion s'affichent avec un style pill (arrondi) via config.toml
+- [x] **BRAND-02**: Les boutons de suggestion s'affichent avec un style pill (arrondi) via config.toml
 
 ### Accueil
 
 - [ ] **ACCU-01**: L'utilisateur voit un message d'accueil expliquant ce que le chatbot peut faire au premier chargement
-- [ ] **ACCU-02**: L'utilisateur voit 4 suggestions de questions ciblées pour un recruteur freelance (stack technique, types de missions, fit mission, disponibilité/TJM)
+- [x] **ACCU-02**: L'utilisateur voit 4 suggestions de questions ciblées pour un recruteur freelance (stack technique, types de missions, fit mission, disponibilité/TJM)
 
 ---
 
@@ -125,8 +125,8 @@
 | PROMPT-04 | Phase 3 | Complete |
 | DEPLOY-01 | Phase 4 | Complete |
 | DEPLOY-02 | Phase 4 | Complete |
-| ACCU-02 | Phase 5 | Pending |
-| BRAND-02 | Phase 5 | Pending |
+| ACCU-02 | Phase 5 | Complete |
+| BRAND-02 | Phase 5 | Complete |
 | ACCU-01 | Phase 6 | Pending |
 | BRAND-01 | Phase 6 | Pending |
 

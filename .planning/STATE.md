@@ -2,15 +2,15 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Polish & First Impression
-status: planning
-stopped_at: "Roadmap v1.1 créé — prêt pour plan-phase 5"
-last_updated: "2026-03-15"
-last_activity: 2026-03-15 — Roadmap v1.1 phases 5-6 défini
+status: Roadmap défini, prêt pour plan-phase 5
+stopped_at: Completed 05-01-PLAN.md — 4 recruiter chips + pill style deployed
+last_updated: "2026-03-15T17:16:39.383Z"
+last_activity: 2026-03-15 — Roadmap v1.1 créé
 progress:
   total_phases: 2
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  completed_phases: 1
+  total_plans: 1
+  completed_plans: 1
   percent: 0
 ---
 
@@ -51,6 +51,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: —
 
 *Updated after each plan completion*
+| Phase 05-suggestions-style P01 | 2min | 3 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,9 @@ Recent decisions affecting current work:
 - [Phase 04-deploiement]: requirements-app.txt (7 packages) créé séparément de requirements.txt (189 packages) — Streamlit Cloud installe uniquement les dépendances nécessaires
 - [Phase 04-deploiement]: MISTRAL_API_KEY configurée via dashboard Streamlit Cloud secrets — jamais dans le code commité
 - [Phase 04-deploiement]: App déployée à https://etirouthierappio.streamlit.app/ — projet en production
+- [Phase 05-suggestions-style]: st.set_page_config placed before @st.cache_resource decorator — Streamlit ordering constraint
+- [Phase 05-suggestions-style]: SUGGESTIONS constant + args=(question,) variable reference — single source of truth, no string duplication
+- [Phase 05-suggestions-style]: buttonRadius = 'full' in config.toml only — colors deferred to Phase 6
 
 ### Pending Todos
 
@@ -78,6 +82,6 @@ None.
 
 ## Session Continuity
 
-Last session: 2026-03-15
-Stopped at: Roadmap v1.1 créé — phases 5-6 définies
+Last session: 2026-03-15T17:16:39.365Z
+Stopped at: Completed 05-01-PLAN.md — 4 recruiter chips + pill style deployed
 Resume file: None

@@ -21,7 +21,7 @@ Full archive: `.planning/milestones/v1.0-ROADMAP.md`
 
 ### v1.1 Polish & First Impression
 
-- [ ] **Phase 5: Suggestions & Style** - Chips recruteur (4 questions), style pill, et page config
+- [x] **Phase 5: Suggestions & Style** - Chips recruteur (4 questions), style pill, et page config (completed 2026-03-15)
 - [ ] **Phase 6: Identité Visuelle** - Message d'accueil et header professionnel
 
 ## Phase Details
@@ -59,5 +59,5 @@ Plans:
 | 2. Build de l'index FAISS | v1.0 | 1/1 | Complete | 2026-03-13 |
 | 3. Application Streamlit complète | v1.0 | 2/2 | Complete | 2026-03-13 |
 | 4. Déploiement | v1.0 | 1/1 | Complete | 2026-03-15 |
-| 5. Suggestions & Style | v1.1 | 0/1 | Not started | - |
+| 5. Suggestions & Style | 1/1 | Complete   | 2026-03-15 | - |
 | 6. Identité Visuelle | v1.1 | 0/? | Not started | - |
