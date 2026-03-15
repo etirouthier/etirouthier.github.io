@@ -4,7 +4,7 @@ milestone: v1.1
 milestone_name: Polish & First Impression
 status: Roadmap défini, prêt pour plan-phase 5
 stopped_at: Completed 06-01-PLAN.md — Phase 6 complete, visual verification approved
-last_updated: "2026-03-15T17:42:13.225Z"
+last_updated: "2026-03-15T17:44:19.399Z"
 last_activity: 2026-03-15 — Roadmap v1.1 créé
 progress:
   total_phases: 2

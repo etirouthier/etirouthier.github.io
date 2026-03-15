@@ -1,5 +1,14 @@
 # Milestones
 
+## v1.1 Polish & First Impression (Shipped: 2026-03-15)
+
+**Phases completed:** 2 phases, 2 plans, 0 tasks
+
+**Key accomplishments:**
+- (none recorded)
+
+---
+
 ## v1.0 MVP (Shipped: 2026-03-15)
 
 **Phases completed:** 4 phases, 5 plans, 0 tasks

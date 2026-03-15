@@ -19,12 +19,13 @@ Un client potentiel peut poser n'importe quelle question sur le profil professio
 - ✓ La base vectorielle FAISS est buildée via un script Python manuel — v1.0
 - ✓ L'app est déployée et fonctionnelle sur Streamlit Community Cloud — v1.0
 - ✓ L'API Mistral (free tier) est utilisée pour la génération de réponses — v1.0
+- ✓ L'app affiche un header professionnel avec nom, titre et positionnement freelance — v1.1
+- ✓ L'app affiche un message d'accueil expliquant ce que le chatbot peut faire — v1.1
+- ✓ Les suggestions de questions ciblent les préoccupations d'un recruteur freelance — v1.1
 
 ### Active
 
-- [ ] L'app affiche un header professionnel avec nom, titre et positionnement freelance
-- [ ] L'app affiche un message d'accueil expliquant ce que le chatbot peut faire
-- [ ] Les suggestions de questions ciblent les préoccupations d'un recruteur freelance
+(Définir avec `/gsd:new-milestone` pour v1.2)
 
 ### Out of Scope
 
@@ -64,14 +65,5 @@ App live : https://etirouthierappio.streamlit.app/
 | EMBEDDING_MODEL centralisé dans config.py | Divergence silencieuse = résultats FAISS invalides | ✓ Critique — même valeur utilisée dans build et app |
 | requirements-app.txt séparé | Streamlit Cloud n'a pas besoin des 189 packages dev | ✓ Bon pattern — 7 packages suffisants en prod |
 
-## Current Milestone: v1.1 Polish & First Impression
-
-**Goal:** Améliorer l'impression initiale pour un visiteur recruteur/client — branding, accueil, et suggestions ciblées.
-
-**Target features:**
-- Header professionnel (nom, titre freelance)
-- Message d'accueil contextualisé
-- Suggestions recruteur freelance
-
 ---
-*Last updated: 2026-03-15 after v1.1 milestone start*
+*Last updated: 2026-03-15 after v1.1 milestone*
