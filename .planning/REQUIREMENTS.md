@@ -49,6 +49,22 @@
 
 ---
 
+---
+
+## v1.1 Requirements
+
+### Branding
+
+- [ ] **BRAND-01**: L'utilisateur voit un header avec le nom et le titre freelance d'Étienne en haut de page
+- [ ] **BRAND-02**: Les boutons de suggestion s'affichent avec un style pill (arrondi) via config.toml
+
+### Accueil
+
+- [ ] **ACCU-01**: L'utilisateur voit un message d'accueil expliquant ce que le chatbot peut faire au premier chargement
+- [ ] **ACCU-02**: L'utilisateur voit 4 suggestions de questions ciblées pour un recruteur freelance (stack technique, types de missions, fit mission, disponibilité/TJM)
+
+---
+
 ## v2 Requirements
 
 ### Amélioration de l'index
@@ -78,6 +94,8 @@
 | Historique persistant cross-sessions | Requiert une base de données, problèmes de privacy |
 | PDF viewer intégré dans Streamlit | La page HTML existante le fait déjà |
 | Rebuild FAISS automatique au démarrage | Complexité inutile pour des documents stables |
+| Suppression du footer Streamlit | CSS hacks instables sur Community Cloud — cassent à chaque mise à jour Streamlit |
+| Titre de l'onglet navigateur (st.set_page_config) | Déféré — inclus implicitement dans BRAND-01 si nécessaire |
 
 ---
 
@@ -116,4 +134,4 @@
 ---
 
 *Requirements defined: 2026-03-13*
-*Last updated: 2026-03-13 — traceability filled after roadmap creation*
+*Last updated: 2026-03-15 — v1.1 requirements added*
