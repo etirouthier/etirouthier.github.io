@@ -4,7 +4,7 @@ milestone: v1.1
 milestone_name: Polish & First Impression
 status: Roadmap défini, prêt pour plan-phase 5
 stopped_at: Completed 05-01-PLAN.md — 4 recruiter chips + pill style deployed
-last_updated: "2026-03-15T17:16:39.383Z"
+last_updated: "2026-03-15T17:21:55.906Z"
 last_activity: 2026-03-15 — Roadmap v1.1 créé
 progress:
   total_phases: 2
