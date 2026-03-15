@@ -70,6 +70,15 @@ SUGGESTIONS = [
 
 # Boutons suggérés — affichés uniquement avant le premier message
 if len(st.session_state.messages) == 0:
+    with st.chat_message("assistant"):
+        st.markdown(
+            "Bonjour ! Je suis l'assistant d'Etienne Routhier, "
+            "consultant freelance Data & IA. "
+            "Je peux répondre à vos questions sur ses compétences techniques, "
+            "ses missions passées et ses disponibilités, "
+            "à partir de son dossier de compétences. "
+            "Posez votre question ou choisissez une suggestion ci-dessous."
+        )
     cols = st.columns(4)
     for i, (col, question) in enumerate(zip(cols, SUGGESTIONS)):
         with col:
