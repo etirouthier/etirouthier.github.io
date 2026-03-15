@@ -29,11 +29,11 @@
 
 ### Interface Streamlit
 
-- [ ] **UI-01**: L'interface présente une fenêtre de chat avec `st.chat_input` pour la saisie et `st.chat_message` pour l'affichage des messages
-- [ ] **UI-02**: L'historique complet de la conversation est visible et persistent pendant toute la session via `st.session_state`
-- [ ] **UI-03**: Au premier chargement (aucun message dans la session), deux boutons de questions suggérées sont affichés : "Quelles sont vos principales compétences ?" et "En quoi pouvez-vous m'aider sur mon projet ?"
-- [ ] **UI-04**: Cliquer sur un bouton de question suggérée déclenche le pipeline RAG avec cette question (identique à une saisie manuelle)
-- [ ] **UI-05**: Un spinner ou message d'attente est affiché pendant le chargement initial de l'index (cold start Streamlit Community Cloud)
+- [x] **UI-01**: L'interface présente une fenêtre de chat avec `st.chat_input` pour la saisie et `st.chat_message` pour l'affichage des messages
+- [x] **UI-02**: L'historique complet de la conversation est visible et persistent pendant toute la session via `st.session_state`
+- [x] **UI-03**: Au premier chargement (aucun message dans la session), deux boutons de questions suggérées sont affichés : "Quelles sont vos principales compétences ?" et "En quoi pouvez-vous m'aider sur mon projet ?"
+- [x] **UI-04**: Cliquer sur un bouton de question suggérée déclenche le pipeline RAG avec cette question (identique à une saisie manuelle)
+- [x] **UI-05**: Un spinner ou message d'attente est affiché pendant le chargement initial de l'index (cold start Streamlit Community Cloud)
 
 ### System Prompt & Comportement
 
@@ -44,8 +44,8 @@
 
 ### Déploiement
 
-- [ ] **DEPLOY-01**: L'app est déployée sur Streamlit Community Cloud et accessible publiquement sans authentification
-- [ ] **DEPLOY-02**: La clé API Mistral est configurée dans les secrets du dashboard Streamlit Community Cloud (pas dans le code ni dans le repo)
+- [x] **DEPLOY-01**: L'app est déployée sur Streamlit Community Cloud et accessible publiquement sans authentification
+- [x] **DEPLOY-02**: La clé API Mistral est configurée dans les secrets du dashboard Streamlit Community Cloud (pas dans le code ni dans le repo)
 
 ---
 
@@ -96,17 +96,17 @@
 | RAG-02 | Phase 3 | Complete |
 | RAG-03 | Phase 3 | Complete |
 | RAG-04 | Phase 3 | Complete |
-| UI-01 | Phase 3 | Pending |
-| UI-02 | Phase 3 | Pending |
-| UI-03 | Phase 3 | Pending |
-| UI-04 | Phase 3 | Pending |
-| UI-05 | Phase 3 | Pending |
+| UI-01 | Phase 3 | Complete |
+| UI-02 | Phase 3 | Complete |
+| UI-03 | Phase 3 | Complete |
+| UI-04 | Phase 3 | Complete |
+| UI-05 | Phase 3 | Complete |
 | PROMPT-01 | Phase 3 | Complete |
 | PROMPT-02 | Phase 3 | Complete |
 | PROMPT-03 | Phase 3 | Complete |
 | PROMPT-04 | Phase 3 | Complete |
-| DEPLOY-01 | Phase 4 | Pending |
-| DEPLOY-02 | Phase 4 | Pending |
+| DEPLOY-01 | Phase 4 | Complete |
+| DEPLOY-02 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 22 total

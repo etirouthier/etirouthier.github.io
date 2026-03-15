@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 03-02-PLAN.md — Phase 3 fully complete, all 4 success criteria validated by user
-last_updated: "2026-03-13T19:46:40.246Z"
+stopped_at: "Completed 04-01-PLAN.md — Phase 4 complete, app deployed at https://etirouthierappio.streamlit.app/"
+last_updated: "2026-03-15T15:41:28.330Z"
 last_activity: 2026-03-13 — Roadmap created
 progress:
   total_phases: 4
-  completed_phases: 3
-  total_plans: 4
-  completed_plans: 4
+  completed_phases: 4
+  total_plans: 5
+  completed_plans: 5
   percent: 100
 ---
 
@@ -55,6 +55,7 @@ Progress: [██████████] 100%
 | Phase 03-application-streamlit-complete P01 | 5min | 2 tasks | 4 files |
 | Phase 03-application-streamlit-complete P02 | 8min | 1 tasks | 1 files |
 | Phase 03-application-streamlit-complete P02 | 8min | 2 tasks | 1 files |
+| Phase 04-deploiement P01 | 30min | 2 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -75,6 +76,9 @@ Recent decisions affecting current work:
 - [Phase 03-application-streamlit-complete]: test_prompt04 importorskip removed — pure logic test must pass green per success criteria, app.py not needed
 - [Phase 03-application-streamlit-complete]: allow_dangerous_deserialization=True required for FAISS.load_local pickle deserialization
 - [Phase 03-application-streamlit-complete]: Error message for 429 displayed inside assistant chat bubble, not via st.error outside
+- [Phase 04-deploiement]: requirements-app.txt (7 packages) créé séparément de requirements.txt (189 packages) — Streamlit Cloud installe uniquement les dépendances nécessaires
+- [Phase 04-deploiement]: MISTRAL_API_KEY configurée via dashboard Streamlit Cloud secrets — jamais dans le code commité
+- [Phase 04-deploiement]: App déployée à https://etirouthierappio.streamlit.app/ — projet en production
 
 ### Pending Todos
 
@@ -87,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-13T19:36:52.980Z
-Stopped at: Completed 03-02-PLAN.md — Phase 3 fully complete, all 4 success criteria validated by user
+Last session: 2026-03-15T15:41:28.327Z
+Stopped at: Completed 04-01-PLAN.md — Phase 4 complete, app deployed at https://etirouthierappio.streamlit.app/
 Resume file: None
