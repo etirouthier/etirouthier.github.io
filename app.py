@@ -22,6 +22,16 @@ SYSTEM_PROMPT = (
     "que tu ne disposes pas de cette information — ne génère pas de contenu inventé."
 )
 
+HEADER_HTML = """
+<div style="text-align: center; padding: 1rem 0 0.5rem 0;">
+    <h1 style="margin: 0; font-size: 1.8rem; font-weight: 700;">Etienne Routhier</h1>
+    <p style="margin: 0.25rem 0 0 0; font-size: 1rem;
+              color: var(--text-color); opacity: 0.65;">
+        Consultant Freelance — Data &amp; IA
+    </p>
+</div>
+"""
+
 
 @st.cache_resource(show_spinner="Chargement de la base de connaissances...")
 def load_vectorstore():
@@ -44,7 +54,7 @@ def inject_question(q: str):
 
 vectorstore = load_vectorstore()
 
-st.title("Assistant — Dossier de Compétences")
+st.markdown(HEADER_HTML, unsafe_allow_html=True)
 
 # Affichage de l'historique
 for msg in st.session_state.messages:
