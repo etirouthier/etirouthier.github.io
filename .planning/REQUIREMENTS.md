@@ -125,13 +125,18 @@
 | PROMPT-04 | Phase 3 | Complete |
 | DEPLOY-01 | Phase 4 | Complete |
 | DEPLOY-02 | Phase 4 | Complete |
+| ACCU-02 | Phase 5 | Pending |
+| BRAND-02 | Phase 5 | Pending |
+| ACCU-01 | Phase 6 | Pending |
+| BRAND-01 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 22 total
-- Mapped to phases: 22
+- v1.1 requirements: 4 total
+- Mapped to phases: 26
 - Unmapped: 0
 
 ---
 
 *Requirements defined: 2026-03-13*
-*Last updated: 2026-03-15 — v1.1 requirements added*
+*Last updated: 2026-03-15 — v1.1 traceability added (phases 5-6)*

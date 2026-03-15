@@ -3,6 +3,7 @@
 ## Milestones
 
 - ✅ **v1.0 MVP** — Phases 1-4 (shipped 2026-03-15)
+- **v1.1 Polish & First Impression** — Phases 5-6 (current)
 
 ## Phases
 
@@ -18,6 +19,35 @@ Full archive: `.planning/milestones/v1.0-ROADMAP.md`
 
 </details>
 
+### v1.1 Polish & First Impression
+
+- [ ] **Phase 5: Suggestions & Style** - Chips recruteur (4 questions), style pill, et page config
+- [ ] **Phase 6: Identité Visuelle** - Message d'accueil et header professionnel
+
+## Phase Details
+
+### Phase 5: Suggestions & Style
+**Goal**: Un recruteur voit des suggestions ciblées et une interface aux boutons arrondis dès le premier chargement
+**Depends on**: Phase 4 (app déployée)
+**Requirements**: ACCU-02, BRAND-02
+**Success Criteria** (what must be TRUE):
+  1. Les 4 boutons de suggestion affichent des questions spécifiques recruteur (stack technique, types de missions, fit mission, disponibilité/TJM)
+  2. Cliquer sur un bouton de suggestion déclenche le pipeline RAG avec la question correspondante
+  3. Les boutons s'affichent avec un style pill (bords arrondis) via config.toml
+  4. L'app se charge sans erreur (st.set_page_config en première position dans app.py)
+**Plans**: TBD
+
+### Phase 6: Identité Visuelle
+**Goal**: Un visiteur comprend immédiatement qui est Étienne et ce que le chatbot peut faire pour lui
+**Depends on**: Phase 5
+**Requirements**: ACCU-01, BRAND-01
+**Success Criteria** (what must be TRUE):
+  1. Le header affiche le nom "Etienne Routhier" et le titre "Consultant Freelance — Data & IA" en haut de page
+  2. Un message d'accueil de l'assistant est visible au premier chargement, expliquant le périmètre du chatbot
+  3. Le message d'accueil disparaît après l'envoi du premier message (ne réapparaît pas à chaque interaction)
+  4. Le header est lisible en thème clair et en thème sombre
+**Plans**: TBD
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -26,3 +56,5 @@ Full archive: `.planning/milestones/v1.0-ROADMAP.md`
 | 2. Build de l'index FAISS | v1.0 | 1/1 | Complete | 2026-03-13 |
 | 3. Application Streamlit complète | v1.0 | 2/2 | Complete | 2026-03-13 |
 | 4. Déploiement | v1.0 | 1/1 | Complete | 2026-03-15 |
+| 5. Suggestions & Style | v1.1 | 0/? | Not started | - |
+| 6. Identité Visuelle | v1.1 | 0/? | Not started | - |
