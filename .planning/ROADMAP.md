@@ -49,7 +49,10 @@ Plans:
   2. Un message d'accueil de l'assistant est visible au premier chargement, expliquant le périmètre du chatbot
   3. Le message d'accueil disparaît après l'envoi du premier message (ne réapparaît pas à chaque interaction)
   4. Le header est lisible en thème clair et en thème sombre
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 06-01-PLAN.md — Modifier app.py (HEADER_HTML constant + st.markdown isolé + welcome bubble dans guard messages == 0)
 
 ## Progress
 
@@ -59,5 +62,5 @@ Plans:
 | 2. Build de l'index FAISS | v1.0 | 1/1 | Complete | 2026-03-13 |
 | 3. Application Streamlit complète | v1.0 | 2/2 | Complete | 2026-03-13 |
 | 4. Déploiement | v1.0 | 1/1 | Complete | 2026-03-15 |
-| 5. Suggestions & Style | 1/1 | Complete    | 2026-03-15 | - |
-| 6. Identité Visuelle | v1.1 | 0/? | Not started | - |
+| 5. Suggestions & Style | v1.1 | 1/1 | Complete | 2026-03-15 |
+| 6. Identité Visuelle | v1.1 | 0/1 | Not started | - |
