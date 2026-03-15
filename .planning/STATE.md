@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Polish & First Impression
 status: Roadmap défini, prêt pour plan-phase 5
-stopped_at: "Checkpoint: human-verify after 06-01 tasks complete — visual verification needed"
-last_updated: "2026-03-15T17:32:24.462Z"
+stopped_at: "Completed 06-01-PLAN.md — all 3 tasks done, checkpoint approved"
+last_updated: "2026-03-15T17:45:00.000Z"
 last_activity: 2026-03-15 — Roadmap v1.1 créé
 progress:
   total_phases: 2
@@ -80,11 +80,10 @@ None.
 
 ### Blockers/Concerns
 
-- [Phase 6]: Couleur subtitle `color: #666` potentiellement peu lisible en dark mode — valider visuellement après déploiement Phase 6 (utiliser CSS variables si besoin)
 - [Phase 5]: Layout des 4 chips (st.columns(4) vs 2x st.columns(2)) — valider sur viewport 1080p et mobile avant finalisation
 
 ## Session Continuity
 
-Last session: 2026-03-15T17:32:24.460Z
-Stopped at: Checkpoint: human-verify after 06-01 tasks complete — visual verification needed
+Last session: 2026-03-15T17:45:00.000Z
+Stopped at: Completed 06-01-PLAN.md — Phase 6 complete, visual verification approved
 Resume file: None
