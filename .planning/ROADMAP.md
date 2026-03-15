@@ -63,4 +63,4 @@ Plans:
 | 3. Application Streamlit complète | v1.0 | 2/2 | Complete | 2026-03-13 |
 | 4. Déploiement | v1.0 | 1/1 | Complete | 2026-03-15 |
 | 5. Suggestions & Style | v1.1 | 1/1 | Complete | 2026-03-15 |
-| 6. Identité Visuelle | 1/1 | Complete   | 2026-03-15 | - |
+| 6. Identité Visuelle | 1/1 | Complete    | 2026-03-15 | - |
