@@ -38,9 +38,14 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 
 **Requirements:** META-01, META-02, GEN-01, GEN-02
 
+**Plans:** 1 plan
+
+Plans:
+- [ ] 07-01-PLAN.md — Enrichissement metadata EXPERIENCE_MAP + context LLM labellisé + rebuild index
+
 **Success criteria:**
 1. `build_index.py` ajoute `experience` dans `doc.metadata` pour chaque chunk
-2. Un dict de mapping explicite `filename → nom` couvre les 7 fichiers assets
+2. Un dict de mapping explicite `filename → nom` couvre les 8 sources (7 md + 1 PDF)
 3. Le contexte envoyé au LLM affiche `[Decathlon]\n<chunk>` pour chaque extrait
 4. Le prompt système mentionne que chaque extrait est labellisé par expérience
 5. L'index rebuilté et commité reflète les nouvelles métadonnées
