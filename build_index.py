@@ -24,6 +24,17 @@ if not raw_docs:
     raise ValueError("Aucun document trouvé dans assets/ — vérifier que les fichiers sont présents.")
 print(f"[1/4] OK — {len(raw_docs)} document(s) chargé(s)")
 
+EXPERIENCE_MAP = {
+    "00_profil.md": "Profil & Activités Internes",
+    "01_decathlon.md": "Decathlon",
+    "02_ssen.md": "SSEN",
+    "03_energys.md": "Energys",
+    "04_veolia.md": "Veolia",
+    "05_grtgaz.md": "GRTgaz",
+    "06_these_sorbonne.md": "Thèse Sorbonne",
+    "dossier_competences.pdf": "Dossier de Compétences",
+}
+
 # Étape 2 : Découper en chunks
 print(f"[2/4] Découpage en chunks (taille={CHUNK_SIZE}, overlap={CHUNK_OVERLAP})...")
 splitter = RecursiveCharacterTextSplitter(
@@ -31,6 +42,10 @@ splitter = RecursiveCharacterTextSplitter(
     chunk_overlap=CHUNK_OVERLAP,
 )
 chunks = splitter.split_documents(raw_docs)
+for doc in chunks:
+    source = doc.metadata.get("source", "")
+    basename = os.path.basename(source)
+    doc.metadata["experience"] = EXPERIENCE_MAP.get(basename, basename)
 print(f"[2/4] OK — {len(chunks)} chunks générés")
 
 # Étape 3 : Générer les embeddings et construire l'index FAISS
@@ -51,7 +66,7 @@ print("\n=== Validation des chunks ===")
 print(f"Nombre total de chunks : {len(chunks)}")
 n_preview = min(3, len(chunks))
 for i in range(n_preview):
-    print(f"\n--- Chunk {i+1} ({len(chunks[i].page_content)} chars, source: {chunks[i].metadata.get('source', '?')}) ---")
+    print(f"\n--- Chunk {i+1} ({len(chunks[i].page_content)} chars, source: {chunks[i].metadata.get('source', '?')}, experience: {chunks[i].metadata.get('experience', '?')}) ---")
     print(chunks[i].page_content[:200])
 
 print("\n[IMPORTANT] Vérifier que les chunks ci-dessus sont lisibles et cohérents.")
