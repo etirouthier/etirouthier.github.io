@@ -49,10 +49,13 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 if "pending_question" not in st.session_state:
     st.session_state.pending_question = None
+if "pending_filter" not in st.session_state:
+    st.session_state.pending_filter = None
 
 
-def inject_question(q: str):
+def inject_question(q: str, experience: str | None = None):
     st.session_state.pending_question = q
+    st.session_state.pending_filter = experience
 
 
 vectorstore = load_vectorstore()
@@ -70,14 +73,15 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
+# (label, question, experience_filter)
 SUGGESTIONS = [
-    ("🏃 Decathlon", "Parle-moi de la mission chez Decathlon."),
-    ("⚡ SSEN", "Parle-moi de la mission chez SSEN."),
-    ("🔋 Energys", "Parle-moi de la mission chez Energys."),
-    ("💧 Veolia", "Parle-moi de la mission chez Veolia."),
-    ("🔵 GRTgaz", "Parle-moi de la mission chez GRTgaz."),
-    ("🎓 Thèse", "Parle-moi de la thèse à Sorbonne Université."),
-    ("🛠️ Stack", "Quelle est la stack technique principale d'Etienne ?"),
+    ("🏃 Decathlon", "Parle-moi de la mission chez Decathlon.", "Decathlon"),
+    ("⚡ SSEN", "Parle-moi de la mission chez SSEN.", "SSEN"),
+    ("🔋 Energys", "Parle-moi de la mission chez Energys.", "Energys"),
+    ("💧 Veolia", "Parle-moi de la mission chez Veolia.", "Veolia"),
+    ("🔵 GRTgaz", "Parle-moi de la mission chez GRTgaz.", "GRTgaz"),
+    ("🎓 Thèse", "Parle-moi de la thèse à Sorbonne Université.", "Thèse Sorbonne"),
+    ("🛠️ Stack", "Quelle est la stack technique principale d'Etienne ?", None),
 ]
 
 # Boutons suggérés — affichés uniquement avant le premier message
@@ -94,21 +98,23 @@ if len(st.session_state.messages) == 0:
     row1 = st.columns(4)
     row2 = st.columns(4)
     cols = row1 + row2
-    for i, (col, (label, question)) in enumerate(zip(cols, SUGGESTIONS)):
+    for i, (col, (label, question, experience)) in enumerate(zip(cols, SUGGESTIONS)):
         with col:
             st.button(
                 label,
                 key=f"suggestion_{i}",
                 on_click=inject_question,
-                args=(question,),
+                args=(question, experience),
                 use_container_width=True,
             )
 
 # Résolution de la question active
 user_input = st.chat_input("Posez votre question sur le profil...")
 active_question = st.session_state.pending_question or user_input
+active_filter = st.session_state.pending_filter if st.session_state.pending_question else None
 if st.session_state.pending_question:
     st.session_state.pending_question = None  # Consommer avant traitement
+    st.session_state.pending_filter = None
 
 if active_question:
     # Afficher et enregistrer le message utilisateur
@@ -116,8 +122,11 @@ if active_question:
         st.markdown(active_question)
     st.session_state.messages.append({"role": "user", "content": active_question})
 
-    # Récupérer les chunks pertinents
-    docs = vectorstore.similarity_search(active_question, k=K_RETRIEVED)
+    # Récupérer les chunks pertinents — filtrés par expérience si bouton mission
+    search_kwargs = {"k": K_RETRIEVED}
+    if active_filter:
+        search_kwargs["filter"] = {"experience": active_filter}
+    docs = vectorstore.similarity_search(active_question, **search_kwargs)
     context = "\n\n".join(
         f"[{doc.metadata.get('experience', '?')}]\n{doc.page_content}"
         for doc in docs
