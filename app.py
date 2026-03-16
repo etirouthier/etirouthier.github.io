@@ -54,6 +54,25 @@ def inject_question(q: str):
 
 vectorstore = load_vectorstore()
 
+# Sidebar — inspection de l'index (debug)
+with st.sidebar:
+    st.markdown("### Index FAISS")
+    all_docs = list(vectorstore.docstore._dict.values())
+    sources = sorted({doc.metadata.get("source", "?") for doc in all_docs})
+    st.caption(f"{len(all_docs)} chunks — {len(sources)} source(s)")
+    with st.expander("Sources indexées"):
+        for s in sources:
+            st.markdown(f"- `{s}`")
+    with st.expander("Derniers chunks (10)"):
+        for doc in all_docs[-10:]:
+            src = doc.metadata.get("source", "?")
+            st.markdown(f"**{src}**")
+            st.text(doc.page_content[:200])
+            st.divider()
+    if st.button("Vider le cache"):
+        st.cache_resource.clear()
+        st.rerun()
+
 st.markdown(HEADER_HTML, unsafe_allow_html=True)
 
 # Affichage de l'historique
