@@ -7,13 +7,13 @@
 
 ### Indexation
 
-- [ ] **META-01**: Chaque chunk possède un champ `experience` dans ses métadonnées, dérivé du nom de fichier source (ex: `01_decathlon.md` → `"Decathlon"`)
-- [ ] **META-02**: Le mapping filename → nom d'expérience est défini explicitement dans `build_index.py` (pas d'inférence fragile sur le nom de fichier)
+- [x] **META-01**: Chaque chunk possède un champ `experience` dans ses métadonnées, dérivé du nom de fichier source (ex: `01_decathlon.md` → `"Decathlon"`)
+- [x] **META-02**: Le mapping filename → nom d'expérience est défini explicitement dans `build_index.py` (pas d'inférence fragile sur le nom de fichier)
 
 ### Génération
 
-- [ ] **GEN-01**: Le contexte injecté dans le LLM préfixe chaque chunk avec `[Expérience]` (ex: `[Decathlon]\n<texte du chunk>`)
-- [ ] **GEN-02**: Le prompt système indique au LLM de mentionner l'expérience source dans ses réponses quand c'est pertinent
+- [x] **GEN-01**: Le contexte injecté dans le LLM préfixe chaque chunk avec `[Expérience]` (ex: `[Decathlon]\n<texte du chunk>`)
+- [x] **GEN-02**: Le prompt système indique au LLM de mentionner l'expérience source dans ses réponses quand c'est pertinent
 
 ## Out of Scope
 
@@ -27,10 +27,10 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| META-01 | Phase 7 | Pending |
-| META-02 | Phase 7 | Pending |
-| GEN-01 | Phase 7 | Pending |
-| GEN-02 | Phase 7 | Pending |
+| META-01 | Phase 7 | Complete |
+| META-02 | Phase 7 | Complete |
+| GEN-01 | Phase 7 | Complete |
+| GEN-02 | Phase 7 | Complete |
 
 **Coverage:**
 - v1.2 requirements: 4 total

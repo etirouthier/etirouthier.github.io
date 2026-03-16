@@ -38,7 +38,7 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 
 **Requirements:** META-01, META-02, GEN-01, GEN-02
 
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
 - [ ] 07-01-PLAN.md — Enrichissement metadata EXPERIENCE_MAP + context LLM labellisé + rebuild index
@@ -60,4 +60,4 @@ Plans:
 | 4. Déploiement | v1.0 | 1/1 | Complete | 2026-03-15 |
 | 5. Suggestions & Style | v1.1 | 1/1 | Complete | 2026-03-15 |
 | 6. Identité Visuelle | v1.1 | 1/1 | Complete | 2026-03-15 |
-| 7. Métadonnées & Contexte LLM | v1.2 | 0/1 | Pending | — |
+| 7. Métadonnées & Contexte LLM | 1/1 | Complete   | 2026-03-16 | — |
