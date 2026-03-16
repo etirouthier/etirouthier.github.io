@@ -19,7 +19,10 @@ SYSTEM_PROMPT = (
     "et les compétences d'Etienne Routhier, basé uniquement sur les documents fournis.\n"
     "Tu réponds toujours en français, avec un ton professionnel et bienveillant.\n"
     "Si la question dépasse le contenu des documents fournis, réponds explicitement "
-    "que tu ne disposes pas de cette information — ne génère pas de contenu inventé."
+    "que tu ne disposes pas de cette information — ne génère pas de contenu inventé.\n"
+    "Chaque extrait du contexte est préfixé par [NomExpérience] indiquant l'expérience "
+    "professionnelle dont il provient. Mentionne l'expérience source dans tes réponses "
+    "quand c'est pertinent."
 )
 
 HEADER_HTML = """
@@ -115,7 +118,10 @@ if active_question:
 
     # Récupérer les chunks pertinents
     docs = vectorstore.similarity_search(active_question, k=K_RETRIEVED)
-    context = "\n\n".join(doc.page_content for doc in docs)
+    context = "\n\n".join(
+        f"[{doc.metadata.get('experience', '?')}]\n{doc.page_content}"
+        for doc in docs
+    )
 
     # Construire les messages LangChain : [SystemMessage, ..., HumanMessage]
     lc_messages = [SystemMessage(content=SYSTEM_PROMPT + f"\n\nContexte:\n{context}")]
