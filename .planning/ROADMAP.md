@@ -4,6 +4,7 @@
 
 - ✅ **v1.0 MVP** — Phases 1-4 (shipped 2026-03-15)
 - ✅ **v1.1 Polish & First Impression** — Phases 5-6 (shipped 2026-03-15)
+- 🔄 **v1.2 Métadonnées d'expérience** — Phase 7 (in progress)
 
 ## Phases
 
@@ -29,6 +30,21 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 
 </details>
 
+## v1.2 Métadonnées d'expérience
+
+### Phase 7: Métadonnées & Contexte LLM
+
+**Goal:** Enrichir les chunks FAISS avec le nom de l'expérience source et labelliser le contexte injecté dans le LLM pour éliminer les mélanges de missions dans les réponses.
+
+**Requirements:** META-01, META-02, GEN-01, GEN-02
+
+**Success criteria:**
+1. `build_index.py` ajoute `experience` dans `doc.metadata` pour chaque chunk
+2. Un dict de mapping explicite `filename → nom` couvre les 7 fichiers assets
+3. Le contexte envoyé au LLM affiche `[Decathlon]\n<chunk>` pour chaque extrait
+4. Le prompt système mentionne que chaque extrait est labellisé par expérience
+5. L'index rebuilté et commité reflète les nouvelles métadonnées
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -39,3 +55,4 @@ Full archive: `.planning/milestones/v1.1-ROADMAP.md`
 | 4. Déploiement | v1.0 | 1/1 | Complete | 2026-03-15 |
 | 5. Suggestions & Style | v1.1 | 1/1 | Complete | 2026-03-15 |
 | 6. Identité Visuelle | v1.1 | 1/1 | Complete | 2026-03-15 |
+| 7. Métadonnées & Contexte LLM | v1.2 | 0/1 | Pending | — |

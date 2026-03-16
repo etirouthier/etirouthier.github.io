@@ -25,7 +25,19 @@ Un client potentiel peut poser n'importe quelle question sur le profil professio
 
 ### Active
 
-(Définir avec `/gsd:new-milestone` pour v1.2)
+<!-- v1.2 — Métadonnées d'expérience -->
+- [ ] Chaque chunk possède un champ `experience` dans ses métadonnées (META-01)
+- [ ] Mapping filename → nom d'expérience explicite dans build_index.py (META-02)
+- [ ] Le contexte LLM préfixe chaque chunk avec `[Expérience]` (GEN-01)
+- [ ] Le prompt système guide le LLM à mentionner la source quand pertinent (GEN-02)
+
+## Current Milestone: v1.2 Métadonnées d'expérience
+
+**Goal:** Enrichir les chunks FAISS avec le nom de l'expérience source pour que le LLM ne mélange plus les missions dans ses réponses.
+
+**Target features:**
+- Métadonnées `experience` sur chaque chunk au build
+- Contexte LLM labellisé par expérience
 
 ### Out of Scope
 
@@ -66,4 +78,4 @@ App live : https://etirouthierappio.streamlit.app/
 | requirements-app.txt séparé | Streamlit Cloud n'a pas besoin des 189 packages dev | ✓ Bon pattern — 7 packages suffisants en prod |
 
 ---
-*Last updated: 2026-03-15 after v1.1 milestone*
+*Last updated: 2026-03-16 after v1.2 milestone start*
