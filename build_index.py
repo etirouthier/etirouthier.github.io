@@ -6,7 +6,7 @@
 
 import os
 from dotenv import load_dotenv
-from langchain_community.document_loaders import PyPDFDirectoryLoader
+from langchain_community.document_loaders import DirectoryLoader, PyPDFDirectoryLoader, TextLoader
 from langchain_community.vectorstores import FAISS
 from langchain_mistralai import MistralAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -15,13 +15,14 @@ from config import EMBEDDING_MODEL, CHUNK_SIZE, CHUNK_OVERLAP, FAISS_INDEX_PATH
 # Charger .env si présent (dev local) — no-op si absent
 load_dotenv()
 
-# Étape 1 : Charger tous les PDFs depuis assets/
+# Étape 1 : Charger les PDFs et les fichiers Markdown depuis assets/
 print("[1/4] Chargement des documents depuis assets/...")
-loader = PyPDFDirectoryLoader("assets/", recursive=True)
-raw_docs = loader.load()
+pdf_loader = PyPDFDirectoryLoader("assets/", recursive=True)
+md_loader = DirectoryLoader("assets/", glob="**/*.md", loader_cls=TextLoader, loader_kwargs={"encoding": "utf-8"}, recursive=True)
+raw_docs = pdf_loader.load() + md_loader.load()
 if not raw_docs:
-    raise ValueError("Aucun document trouvé dans assets/ — vérifier que le PDF est présent.")
-print(f"[1/4] OK — {len(raw_docs)} page(s) chargée(s)")
+    raise ValueError("Aucun document trouvé dans assets/ — vérifier que les fichiers sont présents.")
+print(f"[1/4] OK — {len(raw_docs)} document(s) chargé(s)")
 
 # Étape 2 : Découper en chunks
 print(f"[2/4] Découpage en chunks (taille={CHUNK_SIZE}, overlap={CHUNK_OVERLAP})...")
