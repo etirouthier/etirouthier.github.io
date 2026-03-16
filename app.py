@@ -68,10 +68,13 @@ for msg in st.session_state.messages:
         st.markdown(msg["content"])
 
 SUGGESTIONS = [
-    "Quelle est votre stack technique principale ?",
-    "Quels types de missions avez-vous réalisés ?",
-    "Etes-vous disponible et quel est votre TJM ?",
-    "Seriez-vous un bon fit pour ma mission ?",
+    ("🏃 Decathlon", "Parle-moi de la mission chez Decathlon."),
+    ("⚡ SSEN", "Parle-moi de la mission chez SSEN."),
+    ("🔋 Energys", "Parle-moi de la mission chez Energys."),
+    ("💧 Veolia", "Parle-moi de la mission chez Veolia."),
+    ("🔵 GRTgaz", "Parle-moi de la mission chez GRTgaz."),
+    ("🎓 Thèse", "Parle-moi de la thèse à Sorbonne Université."),
+    ("🛠️ Stack", "Quelle est la stack technique principale d'Etienne ?"),
 ]
 
 # Boutons suggérés — affichés uniquement avant le premier message
@@ -85,14 +88,17 @@ if len(st.session_state.messages) == 0:
             "à partir de son dossier de compétences. "
             "Posez votre question ou choisissez une suggestion ci-dessous."
         )
-    cols = st.columns(4)
-    for i, (col, question) in enumerate(zip(cols, SUGGESTIONS)):
+    row1 = st.columns(4)
+    row2 = st.columns(4)
+    cols = row1 + row2
+    for i, (col, (label, question)) in enumerate(zip(cols, SUGGESTIONS)):
         with col:
             st.button(
-                question,
+                label,
                 key=f"suggestion_{i}",
                 on_click=inject_question,
                 args=(question,),
+                use_container_width=True,
             )
 
 # Résolution de la question active
